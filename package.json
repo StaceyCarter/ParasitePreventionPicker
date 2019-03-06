@@ -1,0 +1,19 @@
+{
+  "name": "parasitepreventionpicker",
+  "version": "1.0.0",
+  "description": "A website to help owners decide what parasite prevention product best suits their needs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/quakerface/ParasitePreventionPicker.git"
+  },
+  "author": "Stacey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/quakerface/ParasitePreventionPicker/issues"
+  },
+  "homepage": "https://github.com/quakerface/ParasitePreventionPicker#readme"
+}
