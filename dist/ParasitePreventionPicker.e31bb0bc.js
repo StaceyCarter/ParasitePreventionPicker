@@ -25724,8 +25724,37 @@ var findCounty = function findCounty(info) {
 };
 
 exports.findCounty = findCounty;
-},{}],"index.js":[function(require,module,exports) {
+},{}],"findCountry.js":[function(require,module,exports) {
 "use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.findCountry = exports.extractAddressComponents = void 0;
+
+var extractAddressComponents = function extractAddressComponents(obj) {
+  return obj.results[0].address_components;
+};
+
+exports.extractAddressComponents = extractAddressComponents;
+
+var findCountry = function findCountry(info) {
+  var addressInfo = extractAddressComponents(info);
+  var countries = addressInfo.filter(function (obj) {
+    var labels = obj.types;
+    return labels.includes("country");
+  });
+  return countries[0].long_name;
+};
+
+exports.findCountry = findCountry;
+},{}],"requestPlace.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.InputAddress = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
@@ -25734,6 +25763,8 @@ var _reactDom = _interopRequireDefault(require("react-dom"));
 var _keys = require("./keys");
 
 var _findCounty = require("./findCounty");
+
+var _findCountry = require("./findCountry");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -25747,34 +25778,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-var Hello =
-/*#__PURE__*/
-function (_React$Component) {
-  _inherits(Hello, _React$Component);
-
-  function Hello() {
-    _classCallCheck(this, Hello);
-
-    return _possibleConstructorReturn(this, _getPrototypeOf(Hello).apply(this, arguments));
-  }
-
-  _createClass(Hello, [{
-    key: "render",
-    value: function render() {
-      return _react.default.createElement("h1", null, "Find My County");
-    }
-  }]);
-
-  return Hello;
-}(_react.default.Component);
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 var address;
 
@@ -25782,17 +25792,18 @@ function getDetails() {
   fetch("https://maps.googleapis.com/maps/api/geocode/json?address=".concat(address, "&key=").concat(_keys.GOOGLEAPI)).then(function (response) {
     return response.json();
   }).then(function (myJson) {
+    console.log(myJson);
     var info = myJson;
-    console.log("result:", JSON.stringify(info));
-    console.log(info.status);
-    info.status === "ZERO_RESULTS" ? alert("No") : alert((0, _findCounty.findCounty)(info));
+    (0, _findCountry.findCountry)(info) !== "United States" && (0, _findCountry.findCountry)(info) !== "Canada" ? alert("Please enter a place within the US or Canada") : alert((0, _findCounty.findCounty)(info));
+  }).catch(function (e) {
+    alert("Please enter valid place within the USA or Canada");
   });
 }
 
 var InputAddress =
 /*#__PURE__*/
-function (_React$Component2) {
-  _inherits(InputAddress, _React$Component2);
+function (_React$Component) {
+  _inherits(InputAddress, _React$Component);
 
   function InputAddress(props) {
     var _this;
@@ -25841,10 +25852,63 @@ function (_React$Component2) {
   return InputAddress;
 }(_react.default.Component);
 
+exports.InputAddress = InputAddress;
+},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./keys":"keys.js","./findCounty":"findCounty.js","./findCountry":"findCountry.js"}],"index.js":[function(require,module,exports) {
+"use strict";
+
+var _react = _interopRequireDefault(require("react"));
+
+var _reactDom = _interopRequireDefault(require("react-dom"));
+
+var _requestPlace = require("./requestPlace.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var address;
+
+var Hello =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(Hello, _React$Component);
+
+  function Hello() {
+    _classCallCheck(this, Hello);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Hello).apply(this, arguments));
+  }
+
+  _createClass(Hello, [{
+    key: "render",
+    value: function render() {
+      return _react.default.createElement("h1", null, "Find My County");
+    }
+  }]);
+
+  return Hello;
+}(_react.default.Component);
+
 var App =
 /*#__PURE__*/
-function (_React$Component3) {
-  _inherits(App, _React$Component3);
+function (_React$Component2) {
+  _inherits(App, _React$Component2);
 
   function App() {
     _classCallCheck(this, App);
@@ -25855,7 +25919,7 @@ function (_React$Component3) {
   _createClass(App, [{
     key: "render",
     value: function render() {
-      return _react.default.createElement("div", null, _react.default.createElement(Hello, null), _react.default.createElement(InputAddress, null));
+      return _react.default.createElement("div", null, _react.default.createElement(Hello, null), _react.default.createElement(_requestPlace.InputAddress, null));
     }
   }]);
 
@@ -25863,7 +25927,7 @@ function (_React$Component3) {
 }(_react.default.Component);
 
 _reactDom.default.render(_react.default.createElement(App, null), document.getElementById("app"));
-},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./keys":"keys.js","./findCounty":"findCounty.js"}],"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./requestPlace.js":"requestPlace.js"}],"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -25890,7 +25954,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50999" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65295" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
