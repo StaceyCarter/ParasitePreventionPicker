@@ -25700,6 +25700,30 @@ Object.defineProperty(exports, "__esModule", {
 exports.GOOGLEAPI = void 0;
 var GOOGLEAPI = "AIzaSyDTG62_rP1u3pMFU--CM4sP8OkJTx9fXmc";
 exports.GOOGLEAPI = GOOGLEAPI;
+},{}],"findCounty.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.findCounty = exports.extractAddressComponents = void 0;
+
+var extractAddressComponents = function extractAddressComponents(obj) {
+  return obj.results[0].address_components;
+};
+
+exports.extractAddressComponents = extractAddressComponents;
+
+var findCounty = function findCounty(info) {
+  var addressInfo = extractAddressComponents(info);
+  var counties = addressInfo.filter(function (obj) {
+    var labels = obj.types;
+    return labels.includes('administrative_area_level_2');
+  });
+  return counties[0].long_name;
+};
+
+exports.findCounty = findCounty;
 },{}],"index.js":[function(require,module,exports) {
 "use strict";
 
@@ -25708,6 +25732,8 @@ var _react = _interopRequireDefault(require("react"));
 var _reactDom = _interopRequireDefault(require("react-dom"));
 
 var _keys = require("./keys");
+
+var _findCounty = require("./findCounty");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -25759,21 +25785,8 @@ function getDetails() {
     var info = myJson;
     console.log(JSON.stringify(info));
     console.log(_typeof(info));
-    alert(findCounty(info));
+    alert((0, _findCounty.findCounty)(info));
   });
-}
-
-function extractAddressComponents(obj) {
-  return obj.results[0].address_components;
-}
-
-function findCounty(info) {
-  var addressInfo = extractAddressComponents(info);
-  var counties = addressInfo.filter(function (obj) {
-    var labels = obj.types;
-    return labels.includes('administrative_area_level_2');
-  });
-  return counties[0].long_name;
 }
 
 var Button =
@@ -25872,7 +25885,7 @@ function (_React$Component4) {
 }(_react.default.Component);
 
 _reactDom.default.render(_react.default.createElement(App, null), document.getElementById('app'));
-},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./keys":"keys.js"}],"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./keys":"keys.js","./findCounty":"findCounty.js"}],"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
