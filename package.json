@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/quakerface/ParasitePreventionPicker/issues"
   },
-  "homepage": "https://github.com/quakerface/ParasitePreventionPicker#readme"
+  "homepage": "https://github.com/quakerface/ParasitePreventionPicker#readme",
+  "dependencies": {
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4"
+  }
 }
