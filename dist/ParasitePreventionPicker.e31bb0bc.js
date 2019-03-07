@@ -25718,7 +25718,7 @@ var findCounty = function findCounty(info) {
   var addressInfo = extractAddressComponents(info);
   var counties = addressInfo.filter(function (obj) {
     var labels = obj.types;
-    return labels.includes('administrative_area_level_2');
+    return labels.includes("administrative_area_level_2");
   });
   return counties[0].long_name;
 };
@@ -25783,39 +25783,16 @@ function getDetails() {
     return response.json();
   }).then(function (myJson) {
     var info = myJson;
-    console.log(JSON.stringify(info));
-    console.log(_typeof(info));
-    alert((0, _findCounty.findCounty)(info));
+    console.log("result:", JSON.stringify(info));
+    console.log(info.status);
+    info.status === "ZERO_RESULTS" ? alert("No") : alert((0, _findCounty.findCounty)(info));
   });
 }
 
-var Button =
-/*#__PURE__*/
-function (_React$Component2) {
-  _inherits(Button, _React$Component2);
-
-  function Button() {
-    _classCallCheck(this, Button);
-
-    return _possibleConstructorReturn(this, _getPrototypeOf(Button).apply(this, arguments));
-  }
-
-  _createClass(Button, [{
-    key: "render",
-    value: function render() {
-      return _react.default.createElement("div", null, _react.default.createElement("button", {
-        onClick: getDetails
-      }, "Get info about address"));
-    }
-  }]);
-
-  return Button;
-}(_react.default.Component);
-
 var InputAddress =
 /*#__PURE__*/
-function (_React$Component3) {
-  _inherits(InputAddress, _React$Component3);
+function (_React$Component2) {
+  _inherits(InputAddress, _React$Component2);
 
   function InputAddress(props) {
     var _this;
@@ -25824,7 +25801,7 @@ function (_React$Component3) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(InputAddress).call(this, props));
     _this.state = {
-      value: ''
+      value: ""
     };
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_assertThisInitialized(_this)));
@@ -25842,6 +25819,7 @@ function (_React$Component3) {
     key: "handleSubmit",
     value: function handleSubmit(event) {
       address = this.state.value;
+      getDetails();
       event.preventDefault();
     }
   }, {
@@ -25855,7 +25833,7 @@ function (_React$Component3) {
         onChange: this.handleChange
       })), _react.default.createElement("input", {
         type: "submit",
-        value: "Submit"
+        value: "Find my county!"
       }));
     }
   }]);
@@ -25865,8 +25843,8 @@ function (_React$Component3) {
 
 var App =
 /*#__PURE__*/
-function (_React$Component4) {
-  _inherits(App, _React$Component4);
+function (_React$Component3) {
+  _inherits(App, _React$Component3);
 
   function App() {
     _classCallCheck(this, App);
@@ -25877,14 +25855,14 @@ function (_React$Component4) {
   _createClass(App, [{
     key: "render",
     value: function render() {
-      return _react.default.createElement("div", null, _react.default.createElement(Hello, null), _react.default.createElement(InputAddress, null), _react.default.createElement(Button, null));
+      return _react.default.createElement("div", null, _react.default.createElement(Hello, null), _react.default.createElement(InputAddress, null));
     }
   }]);
 
   return App;
 }(_react.default.Component);
 
-_reactDom.default.render(_react.default.createElement(App, null), document.getElementById('app'));
+_reactDom.default.render(_react.default.createElement(App, null), document.getElementById("app"));
 },{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./keys":"keys.js","./findCounty":"findCounty.js"}],"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -25912,7 +25890,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65495" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50999" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

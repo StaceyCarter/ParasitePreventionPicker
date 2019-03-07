@@ -20,21 +20,12 @@ function getDetails() {
     })
     .then(myJson => {
       const info = myJson;
-      console.log(JSON.stringify(info));
-      console.log(typeof info);
-      alert(findCounty(info));
+      console.log("result:", JSON.stringify(info));
+      console.log(info.status)
+      info.status === "ZERO_RESULTS" ? alert("No") : alert(findCounty(info));
     });
 }
 
-class Button extends React.Component {
-  render() {
-    return (
-      <div>
-        <button onClick={getDetails}>Get info about address</button>
-      </div>
-    );
-  }
-}
 
 class InputAddress extends React.Component {
   constructor(props) {
@@ -49,6 +40,7 @@ class InputAddress extends React.Component {
   }
   handleSubmit(event) {
     address = this.state.value;
+    getDetails();
     event.preventDefault();
   }
   render() {
@@ -62,7 +54,7 @@ class InputAddress extends React.Component {
             onChange={this.handleChange}
           />
         </label>
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Find my county!" />
       </form>
     );
   }
@@ -74,7 +66,6 @@ class App extends React.Component {
       <div>
         <Hello />
         <InputAddress />
-        <Button />
       </div>
     );
   }
