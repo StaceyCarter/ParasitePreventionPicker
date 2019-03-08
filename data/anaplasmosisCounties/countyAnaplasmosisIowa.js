@@ -1,0 +1,1 @@
+export const countyAnaplasmosisIowa = Too Many Attempts.

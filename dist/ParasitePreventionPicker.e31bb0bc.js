@@ -25818,22 +25818,13 @@ function (_React$Component) {
       value: "",
       county: ""
     };
-    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.handleAnswer = _this.handleAnswer.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
-  } // When you change typing into the input field, this function updates the value state
+  } // This function runs when the form is submitted
 
 
   _createClass(InputAddress, [{
-    key: "handleChange",
-    value: function handleChange(event) {
-      this.setState({
-        value: event.target.value
-      });
-    } // This function runs when the form is submitted
-
-  }, {
     key: "handleSubmit",
     value: function handleSubmit(event) {
       address = this.state.value;
@@ -25850,12 +25841,18 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       return _react.default.createElement("form", {
         onSubmit: this.handleSubmit
-      }, _react.default.createElement("label", null, "Address:", _react.default.createElement("input", {
+      }, _react.default.createElement("label", null, "Enter a place:", _react.default.createElement("input", {
         type: "text",
         value: this.state.value,
-        onChange: this.handleChange
+        onChange: function onChange(e) {
+          return _this2.setState({
+            value: e.target.value
+          });
+        }
       })), _react.default.createElement("input", {
         type: "submit",
         value: "Find my county!"

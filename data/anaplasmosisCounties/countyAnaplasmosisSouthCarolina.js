@@ -1,0 +1,1 @@
+export const countyAnaplasmosisSouthCarolina = Too Many Attempts.

@@ -27,19 +27,15 @@ function getDetails(returnValue) {
       })
   }  
   
-  export class InputAddress extends React.Component {
+export class InputAddress extends React.Component {
     constructor(props) {
       super(props);
       this.state = { value: "", county: ""};
   
-      this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
       this.handleAnswer = this.handleAnswer.bind(this);
     }
-    // When you change typing into the input field, this function updates the value state
-    handleChange(event) {
-      this.setState({ value: event.target.value });
-    }
+    
     // This function runs when the form is submitted
     handleSubmit(event) {
       address = this.state.value;
@@ -56,11 +52,11 @@ function getDetails(returnValue) {
       return (
         <form onSubmit={this.handleSubmit}>
           <label>
-            Address:
+            Enter a place:
             <input
               type="text"
               value={this.state.value}
-              onChange={this.handleChange}
+              onChange={e => this.setState({value: e.target.value})}
             />
           </label>
           <input type="submit" value="Find my county!" />
