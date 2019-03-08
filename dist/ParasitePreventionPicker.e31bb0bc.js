@@ -25748,6 +25748,30 @@ var findCountry = function findCountry(info) {
 };
 
 exports.findCountry = findCountry;
+},{}],"findState.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.findState = exports.extractAddressComponents = void 0;
+
+var extractAddressComponents = function extractAddressComponents(obj) {
+  return obj.results[0].address_components;
+};
+
+exports.extractAddressComponents = extractAddressComponents;
+
+var findState = function findState(info) {
+  var addressInfo = extractAddressComponents(info);
+  var states = addressInfo.filter(function (obj) {
+    var labels = obj.types;
+    return labels.includes("administrative_area_level_1");
+  });
+  return states[0].long_name;
+};
+
+exports.findState = findState;
 },{}],"requestPlace.js":[function(require,module,exports) {
 "use strict";
 
@@ -25765,6 +25789,8 @@ var _keys = require("./keys");
 var _findCounty = require("./findCounty");
 
 var _findCountry = require("./findCountry");
+
+var _findState = require("./findState");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -25788,18 +25814,24 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 var address;
 
-function getDetails(returnValue) {
+function getDetails(returnCounty, returnState, returnError) {
   fetch("https://maps.googleapis.com/maps/api/geocode/json?address=".concat(address, "&key=").concat(_keys.GOOGLEAPI)).then(function (response) {
     return response.json();
   }).then(function (myJson) {
     var info = myJson;
     var country = (0, _findCountry.findCountry)(info);
-    var result = country !== "United States" && country !== "Canada" ? "Please enter a place within the US or Canada" : (0, _findCounty.findCounty)(info);
+    var result = country !== "United States" ? "Please enter a place within the US" : [(0, _findCounty.findCounty)(info), (0, _findState.findState)(info)];
     return result;
   }).then(function (result) {
-    returnValue(result);
+    if (typeof result === "string") {
+      console.log("i am running an error");
+      returnError(result);
+    } else {
+      returnCounty(result[0]);
+      returnState(result[1]);
+    }
   }).catch(function (e) {
-    returnValue("Please enter valid place within the USA or Canada");
+    returnError("Please enter valid place within the USA or Canada");
   });
 }
 
@@ -25816,10 +25848,15 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(InputAddress).call(this, props));
     _this.state = {
       value: "",
-      county: ""
+      county: "",
+      state: "",
+      error: ""
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.handleAnswer = _this.handleAnswer.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handleAnswerCounty = _this.handleAnswerCounty.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handleAnswerState = _this.handleAnswerState.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handleError = _this.handleError.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.renderAnswer = _this.renderAnswer.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   } // This function runs when the form is submitted
 
@@ -25828,15 +25865,48 @@ function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(event) {
       address = this.state.value;
-      getDetails(this.handleAnswer);
+      getDetails(this.handleAnswerCounty, this.handleAnswerState, this.handleError);
       event.preventDefault();
     }
   }, {
-    key: "handleAnswer",
-    value: function handleAnswer(text) {
+    key: "handleAnswerCounty",
+    value: function handleAnswerCounty(countyText) {
       this.setState({
-        county: text
+        error: ""
       });
+      this.setState({
+        county: countyText
+      });
+    }
+  }, {
+    key: "handleAnswerState",
+    value: function handleAnswerState(stateText) {
+      this.setState({
+        error: ""
+      });
+      this.setState({
+        state: stateText
+      });
+    }
+  }, {
+    key: "handleError",
+    value: function handleError(errorText) {
+      this.setState({
+        county: "",
+        state: ""
+      });
+      this.setState({
+        error: errorText
+      });
+    }
+  }, {
+    key: "renderAnswer",
+    value: function renderAnswer() {
+      if (this.state.error) {
+        return _react.default.createElement("p", null, this.state.error);
+      } else {
+        return this.state.county.length > 0 ? _react.default.createElement("p", null, "You live in ", this.state.county, ", ", this.state.state) : _react.default.createElement("p", null, "Submit a address please");
+      }
     }
   }, {
     key: "render",
@@ -25856,7 +25926,7 @@ function (_React$Component) {
       })), _react.default.createElement("input", {
         type: "submit",
         value: "Find my county!"
-      }), this.state.county.length > 0 ? _react.default.createElement("p", null, this.state.county) : _react.default.createElement("p", null, "Submit a address please"));
+      }), this.renderAnswer());
     }
   }]);
 
@@ -25864,7 +25934,7 @@ function (_React$Component) {
 }(_react.default.Component);
 
 exports.InputAddress = InputAddress;
-},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./keys":"keys.js","./findCounty":"findCounty.js","./findCountry":"findCountry.js"}],"index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./keys":"keys.js","./findCounty":"findCounty.js","./findCountry":"findCountry.js","./findState":"findState.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -25965,7 +26035,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53546" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56419" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
