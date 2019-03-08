@@ -25788,7 +25788,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 var address;
 
-function getDetails() {
+function getDetails(returnValue) {
   fetch("https://maps.googleapis.com/maps/api/geocode/json?address=".concat(address, "&key=").concat(_keys.GOOGLEAPI)).then(function (response) {
     return response.json();
   }).then(function (myJson) {
@@ -25803,10 +25803,6 @@ function getDetails() {
   });
 }
 
-function returnValue(fromPromise) {
-  console.log("hello, returnValue function is running now and it has this value: ", fromPromise);
-}
-
 var InputAddress =
 /*#__PURE__*/
 function (_React$Component) {
@@ -25819,12 +25815,15 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(InputAddress).call(this, props));
     _this.state = {
-      value: ""
+      value: "",
+      county: ""
     };
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handleAnswer = _this.handleAnswer.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
-  }
+  } // When you change typing into the input field, this function updates the value state
+
 
   _createClass(InputAddress, [{
     key: "handleChange",
@@ -25832,13 +25831,21 @@ function (_React$Component) {
       this.setState({
         value: event.target.value
       });
-    }
+    } // This function runs when the form is submitted
+
   }, {
     key: "handleSubmit",
     value: function handleSubmit(event) {
       address = this.state.value;
-      getDetails();
+      getDetails(this.handleAnswer);
       event.preventDefault();
+    }
+  }, {
+    key: "handleAnswer",
+    value: function handleAnswer(text) {
+      this.setState({
+        county: text
+      });
     }
   }, {
     key: "render",
@@ -25852,7 +25859,7 @@ function (_React$Component) {
       })), _react.default.createElement("input", {
         type: "submit",
         value: "Find my county!"
-      }));
+      }), this.state.county.length > 0 ? _react.default.createElement("p", null, this.state.county) : _react.default.createElement("p", null, "Submit a address please"));
     }
   }]);
 
