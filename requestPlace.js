@@ -4,6 +4,7 @@ import { GOOGLEAPI } from "./keys";
 import { findCounty } from "./findCounty";
 import { findCountry } from "./findCountry";
 import { findState } from "./findState";
+import { FindParasites } from "./findParasites";
 
 let address;
 
@@ -101,6 +102,7 @@ export class InputAddress extends React.Component {
         </label>
         <input type="submit" value="Find my county!" />
         {this.renderAnswer()}
+        <FindParasites county={this.state.county} state={this.state.state}/>
       </form>
     );
   }

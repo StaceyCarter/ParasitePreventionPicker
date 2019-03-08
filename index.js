@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { InputAddress } from "./requestPlace.js";
+import { FindParasites } from "./findParasites.js";
 
 let address;
 
