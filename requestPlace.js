@@ -14,14 +14,21 @@ function getDetails() {
         return response.json();
       })
       .then(myJson => {
-      console.log(myJson)
         const info = myJson;
-        (findCountry(info) !== "United States" && findCountry(info) !== "Canada") ? alert("Please enter a place within the US or Canada") : alert(findCounty(info));
-        
+        const country = findCountry(info)
+        const result = (country !== "United States" && country !== "Canada") ? "Please enter a place within the US or Canada" : findCounty(info);
+        return result
+      })
+      .then((result)=> {
+          returnValue(result);
       })
       .catch((e) => {
-          alert("Please enter valid place within the USA or Canada")
+          returnValue("Please enter valid place within the USA or Canada");  
       })
+  }
+
+  function returnValue(fromPromise) {
+      console.log("hello, returnValue function is running now and it has this value: ", fromPromise)
   }
   
   
@@ -39,6 +46,7 @@ function getDetails() {
     handleSubmit(event) {
       address = this.state.value;
       getDetails();
+
       event.preventDefault();
     }
     render() {

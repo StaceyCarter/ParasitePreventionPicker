@@ -25792,12 +25792,19 @@ function getDetails() {
   fetch("https://maps.googleapis.com/maps/api/geocode/json?address=".concat(address, "&key=").concat(_keys.GOOGLEAPI)).then(function (response) {
     return response.json();
   }).then(function (myJson) {
-    console.log(myJson);
     var info = myJson;
-    (0, _findCountry.findCountry)(info) !== "United States" && (0, _findCountry.findCountry)(info) !== "Canada" ? alert("Please enter a place within the US or Canada") : alert((0, _findCounty.findCounty)(info));
+    var country = (0, _findCountry.findCountry)(info);
+    var result = country !== "United States" && country !== "Canada" ? "Please enter a place within the US or Canada" : (0, _findCounty.findCounty)(info);
+    return result;
+  }).then(function (result) {
+    returnValue(result);
   }).catch(function (e) {
-    alert("Please enter valid place within the USA or Canada");
+    returnValue("Please enter valid place within the USA or Canada");
   });
+}
+
+function returnValue(fromPromise) {
+  console.log("hello, returnValue function is running now and it has this value: ", fromPromise);
 }
 
 var InputAddress =
@@ -25954,7 +25961,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65295" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53546" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
