@@ -26,7 +26,6 @@ function getDetails(returnCounty, returnState, returnError) {
     })
     .then(result => {
       if (typeof result === "string") {
-        console.log("i am running an error");
         returnError(result);
       } else {
         returnCounty(result[0]);

@@ -1,44 +1,22 @@
-import React from "react";
+
 import { giantArrayOfDiseases } from '/data/giantFileOfDiseasesByState';
 
-const state = "California"
-
-export class Test extends React.Component{
-    constructor(props){
-        super(props)
-        this.state = { test: ""}
-
-    this.tester = this.tester.bind(this);
-    }
-    tester() {
-        this.setState = { test: testing()}
-        console.log("is my testr running")
-    }
-
-    render(){
-        return <p>Hello, this is just a test {this.tester()} </p>
-    }
-}
-
-export function testing(){
-    let array = giantArrayOfDiseases
-    console.log("this is my big array!!: ", array);
+export function getData(state){
+    let obj = {};
     for (let disease of giantArrayOfDiseases){
-        console.log(disease[0]);
         let paramsAndStats = disease[1];
     
         for (let i = 0; i < paramsAndStats.length ; i++){
-            
             if (paramsAndStats[i].params.state.name === state){
-                console.log(paramsAndStats[i].params.state.name)
-                console.log(paramsAndStats[i].stats.risk)
-                console.log(paramsAndStats[i].stats.percentage)
+                let risk = paramsAndStats[i].stats.risk;
+                let percentage = paramsAndStats[i].stats.percentage; 
+                obj[disease[0]] = [risk, percentage];
             }
-            
         }
-
     }
-    return array;
+    // returns an an object, the keys are each of the diseases and the values are an array with the risk in position 0 and the % occurence in position 1.
+    console.log("object returned at end of getData: ", obj)
+    return obj;
 }
 
 

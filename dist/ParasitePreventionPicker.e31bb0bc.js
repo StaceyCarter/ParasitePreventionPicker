@@ -25772,227 +25772,7 @@ var findState = function findState(info) {
 };
 
 exports.findState = findState;
-},{}],"findParasites.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.FindParasites = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-var FindParasites =
-/*#__PURE__*/
-function (_React$Component) {
-  _inherits(FindParasites, _React$Component);
-
-  function FindParasites(props) {
-    _classCallCheck(this, FindParasites);
-
-    return _possibleConstructorReturn(this, _getPrototypeOf(FindParasites).call(this, props));
-  }
-
-  _createClass(FindParasites, [{
-    key: "render",
-    value: function render() {
-      console.log("hello console");
-      return _react.default.createElement("p", null, "hello i am a parasite who lives in ", this.props.county, " in ", this.props.state);
-    }
-  }]);
-
-  return FindParasites;
-}(_react.default.Component);
-
-exports.FindParasites = FindParasites;
-},{"react":"node_modules/react/index.js"}],"requestPlace.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.InputAddress = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-var _reactDom = _interopRequireDefault(require("react-dom"));
-
-var _keys = require("./keys");
-
-var _findCounty = require("./findCounty");
-
-var _findCountry = require("./findCountry");
-
-var _findState = require("./findState");
-
-var _findParasites = require("./findParasites");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-var address;
-
-function getDetails(returnCounty, returnState, returnError) {
-  fetch("https://maps.googleapis.com/maps/api/geocode/json?address=".concat(address, "&key=").concat(_keys.GOOGLEAPI)).then(function (response) {
-    return response.json();
-  }).then(function (myJson) {
-    var info = myJson;
-    var country = (0, _findCountry.findCountry)(info);
-    var result = country !== "United States" ? "Please enter a place within the US" : [(0, _findCounty.findCounty)(info), (0, _findState.findState)(info)];
-    return result;
-  }).then(function (result) {
-    if (typeof result === "string") {
-      console.log("i am running an error");
-      returnError(result);
-    } else {
-      returnCounty(result[0]);
-      returnState(result[1]);
-    }
-  }).catch(function (e) {
-    returnError("Please enter valid place within the USA or Canada");
-  });
-}
-
-var InputAddress =
-/*#__PURE__*/
-function (_React$Component) {
-  _inherits(InputAddress, _React$Component);
-
-  function InputAddress(props) {
-    var _this;
-
-    _classCallCheck(this, InputAddress);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(InputAddress).call(this, props));
-    _this.state = {
-      value: "",
-      county: "",
-      state: "",
-      error: ""
-    };
-    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.handleAnswerCounty = _this.handleAnswerCounty.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.handleAnswerState = _this.handleAnswerState.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.handleError = _this.handleError.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.renderAnswer = _this.renderAnswer.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    return _this;
-  } // This function runs when the form is submitted
-
-
-  _createClass(InputAddress, [{
-    key: "handleSubmit",
-    value: function handleSubmit(event) {
-      address = this.state.value;
-      getDetails(this.handleAnswerCounty, this.handleAnswerState, this.handleError);
-      event.preventDefault();
-    }
-  }, {
-    key: "handleAnswerCounty",
-    value: function handleAnswerCounty(countyText) {
-      this.setState({
-        error: ""
-      });
-      this.setState({
-        county: countyText
-      });
-    }
-  }, {
-    key: "handleAnswerState",
-    value: function handleAnswerState(stateText) {
-      this.setState({
-        error: ""
-      });
-      this.setState({
-        state: stateText
-      });
-    }
-  }, {
-    key: "handleError",
-    value: function handleError(errorText) {
-      this.setState({
-        county: "",
-        state: ""
-      });
-      this.setState({
-        error: errorText
-      });
-    }
-  }, {
-    key: "renderAnswer",
-    value: function renderAnswer() {
-      if (this.state.error) {
-        return _react.default.createElement("p", null, this.state.error);
-      } else {
-        return this.state.county.length > 0 ? _react.default.createElement("p", null, "You live in ", this.state.county, ", ", this.state.state) : _react.default.createElement("p", null, "Submit a address please");
-      }
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this2 = this;
-
-      return _react.default.createElement("form", {
-        onSubmit: this.handleSubmit
-      }, _react.default.createElement("label", null, "Enter a place:", _react.default.createElement("input", {
-        type: "text",
-        value: this.state.value,
-        onChange: function onChange(e) {
-          return _this2.setState({
-            value: e.target.value
-          });
-        }
-      })), _react.default.createElement("input", {
-        type: "submit",
-        value: "Find my county!"
-      }), this.renderAnswer(), _react.default.createElement(_findParasites.FindParasites, {
-        county: this.state.county,
-        state: this.state.state
-      }));
-    }
-  }]);
-
-  return InputAddress;
-}(_react.default.Component);
-
-exports.InputAddress = InputAddress;
-},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./keys":"keys.js","./findCounty":"findCounty.js","./findCountry":"findCountry.js","./findState":"findState.js","./findParasites":"findParasites.js"}],"data/giantFileOfDiseasesByState.js":[function(require,module,exports) {
+},{}],"data/giantFileOfDiseasesByState.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -47223,12 +47003,59 @@ exports.giantArrayOfDiseases = giantArrayOfDiseases;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.testing = testing;
-exports.Test = void 0;
+exports.getData = getData;
+
+var _giantFileOfDiseasesByState = require("/data/giantFileOfDiseasesByState");
+
+function getData(state) {
+  var obj = {};
+  var _iteratorNormalCompletion = true;
+  var _didIteratorError = false;
+  var _iteratorError = undefined;
+
+  try {
+    for (var _iterator = _giantFileOfDiseasesByState.giantArrayOfDiseases[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+      var disease = _step.value;
+      var paramsAndStats = disease[1];
+
+      for (var i = 0; i < paramsAndStats.length; i++) {
+        if (paramsAndStats[i].params.state.name === state) {
+          var risk = paramsAndStats[i].stats.risk;
+          var percentage = paramsAndStats[i].stats.percentage;
+          obj[disease[0]] = [risk, percentage];
+        }
+      }
+    } // returns an an object, the keys are each of the diseases and the values are an array with the risk in position 0 and the % occurence in position 1.
+
+  } catch (err) {
+    _didIteratorError = true;
+    _iteratorError = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion && _iterator.return != null) {
+        _iterator.return();
+      }
+    } finally {
+      if (_didIteratorError) {
+        throw _iteratorError;
+      }
+    }
+  }
+
+  console.log("object returned at end of getData: ", obj);
+  return obj;
+}
+},{"/data/giantFileOfDiseasesByState":"data/giantFileOfDiseasesByState.js"}],"findParasites.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.FindParasites = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _giantFileOfDiseasesByState = require("/data/giantFileOfDiseasesByState");
+var _importData = require("./importData");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -47250,85 +47077,232 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-var state = "California";
-
-var Test =
+var FindParasites =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits(Test, _React$Component);
+  _inherits(FindParasites, _React$Component);
 
-  function Test(props) {
+  function FindParasites(props) {
     var _this;
 
-    _classCallCheck(this, Test);
+    _classCallCheck(this, FindParasites);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Test).call(this, props));
-    _this.state = {
-      test: ""
-    };
-    _this.tester = _this.tester.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(FindParasites).call(this, props));
+    _this.findInfo = _this.findInfo.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   }
 
-  _createClass(Test, [{
-    key: "tester",
-    value: function tester() {
-      this.setState = {
-        test: testing()
-      };
-      console.log("is my testr running");
+  _createClass(FindParasites, [{
+    key: "findInfo",
+    value: function findInfo() {
+      var stateLocation = this.props.state;
+      var info = (0, _importData.getData)(stateLocation);
+      console.log(info);
+      return _react.default.createElement("div", null, _react.default.createElement("h3", null, "Lyme"), _react.default.createElement("p", null, "Risk: ", info.Lyme[0]), _react.default.createElement("p", null, "The percentage of animals who test positive is ", info.Lyme[1], "%"), _react.default.createElement("h3", null, "Anaplasmosis"), _react.default.createElement("p", null, "Risk: ", info.Anaplasmosis[0]), _react.default.createElement("p", null, "The percentage of animals who test positive is ", info.Anaplasmosis[1], "%"), _react.default.createElement("h3", null, "Erlichiosis"), _react.default.createElement("p", null, "Risk: ", info.Erlichiosis[0]), _react.default.createElement("p", null, "The percentage of animals who test positive is ", info.Erlichiosis[1], "%"), _react.default.createElement("h3", null, "Roundworm"), _react.default.createElement("p", null, "Risk: ", info.Roundworm[0]), _react.default.createElement("p", null, "The percentage of animals who test positive is ", info.Roundworm[1], "%"), _react.default.createElement("h3", null, "Hookworm"), _react.default.createElement("p", null, "Risk: ", info.Hookworm[0]), _react.default.createElement("p", null, "The percentage of animals who test positive is ", info.Hookworm[1], "%"), _react.default.createElement("h3", null, "Giardia"), _react.default.createElement("p", null, "Risk: ", info.Giardia[0]), _react.default.createElement("p", null, "The percentage of animals who test positive is ", info.Giardia[1], "%"), _react.default.createElement("h3", null, "Heartworm"), _react.default.createElement("p", null, "Risk: ", info.Heartworm[0]), _react.default.createElement("p", null, "The percentage of animals who test positive is ", info.Heartworm[1], "%"), _react.default.createElement("h3", null, "Whipworm"), _react.default.createElement("p", null, "Risk: ", info.Whipworm[0]), _react.default.createElement("p", null, "The percentage of animals who test positive is ", info.Whipworm[1], "%"));
     }
   }, {
     key: "render",
     value: function render() {
-      return _react.default.createElement("p", null, "Hello, this is just a test ", this.tester(), " ");
+      if (this.props.state) {
+        return this.findInfo();
+      }
+
+      return _react.default.createElement("p", null, " hello i am a parasite who lives in ", this.props.county, " in ", this.props.state, " ");
     }
   }]);
 
-  return Test;
+  return FindParasites;
 }(_react.default.Component);
 
-exports.Test = Test;
+exports.FindParasites = FindParasites;
 
-function testing() {
-  var array = _giantFileOfDiseasesByState.giantArrayOfDiseases;
-  console.log("this is my big array!!: ", array);
-  var _iteratorNormalCompletion = true;
-  var _didIteratorError = false;
-  var _iteratorError = undefined;
+var Heartworm =
+/*#__PURE__*/
+function (_React$Component2) {
+  _inherits(Heartworm, _React$Component2);
 
-  try {
-    for (var _iterator = _giantFileOfDiseasesByState.giantArrayOfDiseases[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-      var disease = _step.value;
-      console.log(disease[0]);
-      var paramsAndStats = disease[1];
+  function Heartworm(props) {
+    _classCallCheck(this, Heartworm);
 
-      for (var i = 0; i < paramsAndStats.length; i++) {
-        if (paramsAndStats[i].params.state.name === state) {
-          console.log(paramsAndStats[i].params.state.name);
-          console.log(paramsAndStats[i].stats.risk);
-          console.log(paramsAndStats[i].stats.percentage);
-        }
-      }
-    }
-  } catch (err) {
-    _didIteratorError = true;
-    _iteratorError = err;
-  } finally {
-    try {
-      if (!_iteratorNormalCompletion && _iterator.return != null) {
-        _iterator.return();
-      }
-    } finally {
-      if (_didIteratorError) {
-        throw _iteratorError;
-      }
-    }
+    return _possibleConstructorReturn(this, _getPrototypeOf(Heartworm).call(this, props));
   }
 
-  return array;
+  _createClass(Heartworm, [{
+    key: "render",
+    value: function render() {
+      return _react.default.createElement("p", null, "hello heartworm");
+    }
+  }]);
+
+  return Heartworm;
+}(_react.default.Component);
+},{"react":"node_modules/react/index.js","./importData":"importData.js"}],"requestPlace.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.InputAddress = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _reactDom = _interopRequireDefault(require("react-dom"));
+
+var _keys = require("./keys");
+
+var _findCounty = require("./findCounty");
+
+var _findCountry = require("./findCountry");
+
+var _findState = require("./findState");
+
+var _findParasites = require("./findParasites");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+var address;
+
+function getDetails(returnCounty, returnState, returnError) {
+  fetch("https://maps.googleapis.com/maps/api/geocode/json?address=".concat(address, "&key=").concat(_keys.GOOGLEAPI)).then(function (response) {
+    return response.json();
+  }).then(function (myJson) {
+    var info = myJson;
+    var country = (0, _findCountry.findCountry)(info);
+    var result = country !== "United States" ? "Please enter a place within the US" : [(0, _findCounty.findCounty)(info), (0, _findState.findState)(info)];
+    return result;
+  }).then(function (result) {
+    if (typeof result === "string") {
+      returnError(result);
+    } else {
+      returnCounty(result[0]);
+      returnState(result[1]);
+    }
+  }).catch(function (e) {
+    returnError("Please enter valid place within the USA or Canada");
+  });
 }
-},{"react":"node_modules/react/index.js","/data/giantFileOfDiseasesByState":"data/giantFileOfDiseasesByState.js"}],"index.js":[function(require,module,exports) {
+
+var InputAddress =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(InputAddress, _React$Component);
+
+  function InputAddress(props) {
+    var _this;
+
+    _classCallCheck(this, InputAddress);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(InputAddress).call(this, props));
+    _this.state = {
+      value: "",
+      county: "",
+      state: "",
+      error: ""
+    };
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handleAnswerCounty = _this.handleAnswerCounty.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handleAnswerState = _this.handleAnswerState.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handleError = _this.handleError.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.renderAnswer = _this.renderAnswer.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    return _this;
+  } // This function runs when the form is submitted
+
+
+  _createClass(InputAddress, [{
+    key: "handleSubmit",
+    value: function handleSubmit(event) {
+      address = this.state.value;
+      getDetails(this.handleAnswerCounty, this.handleAnswerState, this.handleError);
+      event.preventDefault();
+    }
+  }, {
+    key: "handleAnswerCounty",
+    value: function handleAnswerCounty(countyText) {
+      this.setState({
+        error: ""
+      });
+      this.setState({
+        county: countyText
+      });
+    }
+  }, {
+    key: "handleAnswerState",
+    value: function handleAnswerState(stateText) {
+      this.setState({
+        error: ""
+      });
+      this.setState({
+        state: stateText
+      });
+    }
+  }, {
+    key: "handleError",
+    value: function handleError(errorText) {
+      this.setState({
+        county: "",
+        state: ""
+      });
+      this.setState({
+        error: errorText
+      });
+    }
+  }, {
+    key: "renderAnswer",
+    value: function renderAnswer() {
+      if (this.state.error) {
+        return _react.default.createElement("p", null, this.state.error);
+      } else {
+        return this.state.county.length > 0 ? _react.default.createElement("p", null, "You live in ", this.state.county, ", ", this.state.state) : _react.default.createElement("p", null, "Submit a address please");
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      return _react.default.createElement("form", {
+        onSubmit: this.handleSubmit
+      }, _react.default.createElement("label", null, "Enter a place:", _react.default.createElement("input", {
+        type: "text",
+        value: this.state.value,
+        onChange: function onChange(e) {
+          return _this2.setState({
+            value: e.target.value
+          });
+        }
+      })), _react.default.createElement("input", {
+        type: "submit",
+        value: "Find my county!"
+      }), this.renderAnswer(), _react.default.createElement(_findParasites.FindParasites, {
+        county: this.state.county,
+        state: this.state.state
+      }));
+    }
+  }]);
+
+  return InputAddress;
+}(_react.default.Component);
+
+exports.InputAddress = InputAddress;
+},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./keys":"keys.js","./findCounty":"findCounty.js","./findCountry":"findCountry.js","./findState":"findState.js","./findParasites":"findParasites.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -47336,8 +47310,6 @@ var _react = _interopRequireDefault(require("react"));
 var _reactDom = _interopRequireDefault(require("react-dom"));
 
 var _requestPlace = require("./requestPlace.js");
-
-var _importData = require("./importData.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -47396,7 +47368,7 @@ function (_React$Component2) {
   _createClass(App, [{
     key: "render",
     value: function render() {
-      return _react.default.createElement("div", null, _react.default.createElement(Hello, null), _react.default.createElement(_requestPlace.InputAddress, null), _react.default.createElement(_importData.Test, null));
+      return _react.default.createElement("div", null, _react.default.createElement(Hello, null), _react.default.createElement(_requestPlace.InputAddress, null));
     }
   }]);
 
@@ -47404,7 +47376,7 @@ function (_React$Component2) {
 }(_react.default.Component);
 
 _reactDom.default.render(_react.default.createElement(App, null), document.getElementById("app"));
-},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./requestPlace.js":"requestPlace.js","./importData.js":"importData.js"}],"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./requestPlace.js":"requestPlace.js"}],"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;

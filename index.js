@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { InputAddress } from "./requestPlace.js";
-import { Test } from "./importData.js";
+
 
 let address;
 
@@ -17,7 +17,6 @@ class App extends React.Component {
       <div>
         <Hello />
         <InputAddress />
-        <Test />
       </div>
     );
   }
