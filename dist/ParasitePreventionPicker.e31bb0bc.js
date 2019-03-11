@@ -50806,7 +50806,41 @@ FontAwesomeIcon.defaultProps = {
   transform: null
 };
 var convertCurry = convert.bind(null, _react.default.createElement);
-},{"@fortawesome/fontawesome-svg-core":"node_modules/@fortawesome/fontawesome-svg-core/index.es.js","prop-types":"node_modules/prop-types/index.js","react":"node_modules/react/index.js"}],"tickBorneDiseases.js":[function(require,module,exports) {
+},{"@fortawesome/fontawesome-svg-core":"node_modules/@fortawesome/fontawesome-svg-core/index.es.js","prop-types":"node_modules/prop-types/index.js","react":"node_modules/react/index.js"}],"riskImageDecider.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.riskImageDetector = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _reactFontawesome = require("@fortawesome/react-fontawesome");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var riskImageDetector = function riskImageDetector(riskLevel) {
+  if (riskLevel === "high") {
+    return _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
+      icon: "thermometer-full",
+      color: "red"
+    });
+  } else if (riskLevel === "medium") {
+    return _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
+      icon: "thermometer-half",
+      color: "orange"
+    });
+  } else {
+    return _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
+      icon: "thermometer-quarter",
+      color: "green"
+    });
+  }
+};
+
+exports.riskImageDetector = riskImageDetector;
+},{"react":"node_modules/react/index.js","@fortawesome/react-fontawesome":"node_modules/@fortawesome/react-fontawesome/index.es.js"}],"tickBorneDiseases.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -50817,6 +50851,8 @@ exports.Erlichiosis = exports.Anaplasmosis = exports.Lyme = void 0;
 var _react = _interopRequireDefault(require("react"));
 
 var _reactFontawesome = require("@fortawesome/react-fontawesome");
+
+var _riskImageDecider = require("./riskImageDecider");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -50830,13 +50866,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 var Lyme =
 /*#__PURE__*/
@@ -50844,37 +50880,16 @@ function (_React$Component) {
   _inherits(Lyme, _React$Component);
 
   function Lyme(props) {
-    var _this;
-
     _classCallCheck(this, Lyme);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Lyme).call(this, props));
-    _this.riskImageDecider = _this.riskImageDecider.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    return _this;
+    return _possibleConstructorReturn(this, _getPrototypeOf(Lyme).call(this, props));
   }
 
   _createClass(Lyme, [{
-    key: "riskImageDecider",
-    value: function riskImageDecider() {
-      if (this.props.risk === "high") {
-        return _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
-          icon: "thermometer-full"
-        });
-      } else if (this.props.risk === "medium") {
-        return _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
-          icon: "thermometer-half"
-        });
-      } else {
-        return _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
-          icon: "thermometer-quarter"
-        });
-      }
-    }
-  }, {
     key: "render",
     value: function render() {
       if (this.props) {
-        return _react.default.createElement("div", null, _react.default.createElement("p", null, "The risk of lyme disease is ", this.props.risk, " ", this.riskImageDecider(), "."), _react.default.createElement("p", null, "The percentage of animals who tested positive is", " ", this.props.percentage, "%"));
+        return _react.default.createElement("div", null, _react.default.createElement("p", null, "The risk of lyme disease is ", this.props.risk, " ", (0, _riskImageDecider.riskImageDetector)(this.props.risk), "."), _react.default.createElement("p", null, "The percentage of animals who tested positive is", " ", this.props.percentage, "%"));
       }
 
       return _react.default.createElement("p", null);
@@ -50901,7 +50916,7 @@ function (_React$Component2) {
     key: "render",
     value: function render() {
       if (this.props) {
-        return _react.default.createElement("div", null, _react.default.createElement("p", null, "The risk of anaplasmosis is ", this.props.risk, "."), _react.default.createElement("p", null, "The percentage of animals who tested positive is", " ", this.props.percentage, "%"));
+        return _react.default.createElement("div", null, _react.default.createElement("p", null, "The risk of anaplasmosis is ", this.props.risk, " ", (0, _riskImageDecider.riskImageDetector)(this.props.risk), "."), _react.default.createElement("p", null, "The percentage of animals who tested positive is", " ", this.props.percentage, "%"));
       }
 
       return _react.default.createElement("p", null);
@@ -50928,7 +50943,7 @@ function (_React$Component3) {
     key: "render",
     value: function render() {
       if (this.props) {
-        return _react.default.createElement("div", null, _react.default.createElement("p", null, "The risk of erlichiosis is ", this.props.risk, "."), _react.default.createElement("p", null, "The percentage of animals who tested positive is", " ", this.props.percentage, "%"));
+        return _react.default.createElement("div", null, _react.default.createElement("p", null, "The risk of erlichiosis is ", this.props.risk, " ", (0, _riskImageDecider.riskImageDetector)(this.props.risk), "."), _react.default.createElement("p", null, "The percentage of animals who tested positive is", " ", this.props.percentage, "%"));
       }
 
       return _react.default.createElement("p", null);
@@ -50939,7 +50954,7 @@ function (_React$Component3) {
 }(_react.default.Component);
 
 exports.Erlichiosis = Erlichiosis;
-},{"react":"node_modules/react/index.js","@fortawesome/react-fontawesome":"node_modules/@fortawesome/react-fontawesome/index.es.js"}],"intestinalParasites.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","@fortawesome/react-fontawesome":"node_modules/@fortawesome/react-fontawesome/index.es.js","./riskImageDecider":"riskImageDecider.js"}],"intestinalParasites.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -50948,6 +50963,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.Roundworm = exports.Giardia = exports.Whipworm = exports.Hookworm = void 0;
 
 var _react = _interopRequireDefault(require("react"));
+
+var _riskImageDecider = require("./riskImageDecider");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -50984,7 +51001,7 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       if (this.props) {
-        return _react.default.createElement("div", null, _react.default.createElement("p", null, "The risk of hookworm is ", this.props.risk, "."), _react.default.createElement("p", null, "The percentage of animals who tested positive is", " ", this.props.percentage, "%"));
+        return _react.default.createElement("div", null, _react.default.createElement("p", null, "The risk of hookworm is ", this.props.risk, " ", (0, _riskImageDecider.riskImageDetector)(this.props.risk), "."), _react.default.createElement("p", null, "The percentage of animals who tested positive is", " ", this.props.percentage, "%"));
       }
 
       return _react.default.createElement("p", null);
@@ -51011,7 +51028,7 @@ function (_React$Component2) {
     key: "render",
     value: function render() {
       if (this.props) {
-        return _react.default.createElement("div", null, _react.default.createElement("p", null, "The risk of whipworm is ", this.props.risk, "."), _react.default.createElement("p", null, "The percentage of animals who tested positive is", " ", this.props.percentage, "%"));
+        return _react.default.createElement("div", null, _react.default.createElement("p", null, "The risk of whipworm is ", this.props.risk, " ", (0, _riskImageDecider.riskImageDetector)(this.props.risk), "."), _react.default.createElement("p", null, "The percentage of animals who tested positive is", " ", this.props.percentage, "%"));
       }
 
       return _react.default.createElement("p", null);
@@ -51038,7 +51055,7 @@ function (_React$Component3) {
     key: "render",
     value: function render() {
       if (this.props) {
-        return _react.default.createElement("div", null, _react.default.createElement("p", null, "The risk of giardia is ", this.props.risk, "."), _react.default.createElement("p", null, "The percentage of animals who tested positive is", " ", this.props.percentage, "%"));
+        return _react.default.createElement("div", null, _react.default.createElement("p", null, "The risk of giardia is ", this.props.risk, " ", (0, _riskImageDecider.riskImageDetector)(this.props.risk), "."), _react.default.createElement("p", null, "The percentage of animals who tested positive is", " ", this.props.percentage, "%"));
       }
 
       return _react.default.createElement("p", null);
@@ -51065,7 +51082,7 @@ function (_React$Component4) {
     key: "render",
     value: function render() {
       if (this.props) {
-        return _react.default.createElement("div", null, _react.default.createElement("p", null, "The risk of roundworm is ", this.props.risk, "."), _react.default.createElement("p", null, "The percentage of animals who tested positive is", " ", this.props.percentage, "%"));
+        return _react.default.createElement("div", null, _react.default.createElement("p", null, "The risk of roundworm is ", this.props.risk, " ", (0, _riskImageDecider.riskImageDetector)(this.props.risk), "."), _react.default.createElement("p", null, "The percentage of animals who tested positive is", " ", this.props.percentage, "%"));
       }
 
       return _react.default.createElement("p", null);
@@ -51076,7 +51093,7 @@ function (_React$Component4) {
 }(_react.default.Component);
 
 exports.Roundworm = Roundworm;
-},{"react":"node_modules/react/index.js"}],"findParasites.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./riskImageDecider":"riskImageDecider.js"}],"findParasites.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -51091,6 +51108,8 @@ var _importData = require("./importData");
 var _tickBorneDiseases = require("./tickBorneDiseases.js");
 
 var _intestinalParasites = require("./intestinalParasites");
+
+var _riskImageDecider = require("./riskImageDecider");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -51171,7 +51190,7 @@ function (_React$Component) {
       }))), this.findWormRisk(info.Roundworm[0], info.Hookworm[0], info.Whipworm[0], info.Giardia[0]), _react.default.createElement("h3", null, "Giardia"), _react.default.createElement(_intestinalParasites.Giardia, {
         risk: info.Giardia[0],
         percentage: info.Giardia[1]
-      }), info.Giardia[0] === "high" ? _react.default.createElement("p", null, "!!Risk of giardia is high in your area!!") : "", _react.default.createElement("h2", null, "Heartworm"), _react.default.createElement("p", null, "Risk: ", info.Heartworm[0]), _react.default.createElement("p", null, "The percentage of animals who test positive is ", info.Heartworm[1], "%"), this.findHeartWormRisk(info.Heartworm[0]));
+      }), info.Giardia[0] === "high" ? _react.default.createElement("p", null, "!!Risk of giardia is high in your area!!") : "", _react.default.createElement("h2", null, "Heartworm"), _react.default.createElement("p", null, "Risk: ", info.Heartworm[0], " ", (0, _riskImageDecider.riskImageDetector)(info.Heartworm[0])), _react.default.createElement("p", null, "The percentage of animals who test positive is ", info.Heartworm[1], "%"), this.findHeartWormRisk(info.Heartworm[0]));
     }
   }, {
     key: "findTickRisk",
@@ -51231,7 +51250,7 @@ function (_React$Component) {
         return this.findInfo();
       }
 
-      return _react.default.createElement("p", null, " ", "hello i am a parasite who lives in ", this.props.county, " in", " ", this.props.state, " ");
+      return _react.default.createElement("p", null);
     }
   }]);
 
@@ -51260,7 +51279,7 @@ function (_React$Component2) {
 
   return Heartworm;
 }(_react.default.Component);
-},{"react":"node_modules/react/index.js","./importData":"importData.js","./tickBorneDiseases.js":"tickBorneDiseases.js","./intestinalParasites":"intestinalParasites.js"}],"requestPlace.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./importData":"importData.js","./tickBorneDiseases.js":"tickBorneDiseases.js","./intestinalParasites":"intestinalParasites.js","./riskImageDecider":"riskImageDecider.js"}],"requestPlace.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -51281,6 +51300,8 @@ var _findCountry = require("./findCountry");
 var _findState = require("./findState");
 
 var _findParasites = require("./findParasites");
+
+var _reactFontawesome = require("@fortawesome/react-fontawesome");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -51320,7 +51341,7 @@ function getDetails(returnCounty, returnState, returnError) {
       returnState(result[1]);
     }
   }).catch(function (e) {
-    returnError("Please enter valid place within the USA or Canada");
+    returnError("Please enter valid place within the US");
   });
 }
 
@@ -51394,7 +51415,9 @@ function (_React$Component) {
       if (this.state.error) {
         return _react.default.createElement("p", null, this.state.error);
       } else {
-        return this.state.county.length > 0 ? _react.default.createElement("p", null, "You live in ", this.state.county, ", ", this.state.state) : _react.default.createElement("p", null, "Submit a address please");
+        return this.state.county.length > 0 ? _react.default.createElement("div", null, _react.default.createElement("p", null, "You live in ", this.state.county, ", ", this.state.state, "."), _react.default.createElement("p", null, "The local parasitic diseases in your area are:")) : _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
+          icon: "bug"
+        });
       }
     }
   }, {
@@ -51404,18 +51427,24 @@ function (_React$Component) {
 
       return _react.default.createElement("form", {
         onSubmit: this.handleSubmit
-      }, _react.default.createElement("label", null, "Enter a place:", _react.default.createElement("input", {
+      }, _react.default.createElement("label", null, _react.default.createElement("span", {
+        className: "label"
+      }, "Enter your city or town within the US to learn about your local parasites and the diseases they carry."), _react.default.createElement("input", {
         type: "text",
         value: this.state.value,
+        placeholder: "eg. San Francisco",
         onChange: function onChange(e) {
           return _this2.setState({
             value: e.target.value
           });
         }
-      })), _react.default.createElement("input", {
+      })), _react.default.createElement("span", {
+        className: "label button"
+      }, _react.default.createElement("input", {
         type: "submit",
-        value: "Find my county!"
-      }), this.renderAnswer(), _react.default.createElement(_findParasites.FindParasites, {
+        value: "Submit",
+        className: "btn btn-outline-primary btn-lg"
+      })), this.renderAnswer(), _react.default.createElement(_findParasites.FindParasites, {
         county: this.state.county,
         state: this.state.state
       }));
@@ -51426,7 +51455,7 @@ function (_React$Component) {
 }(_react.default.Component);
 
 exports.InputAddress = InputAddress;
-},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./keys":"keys.js","./findCounty":"findCounty.js","./findCountry":"findCountry.js","./findState":"findState.js","./findParasites":"findParasites.js"}],"node_modules/@fortawesome/free-brands-svg-icons/index.es.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./keys":"keys.js","./findCounty":"findCounty.js","./findCountry":"findCountry.js","./findState":"findState.js","./findParasites":"findParasites.js","@fortawesome/react-fontawesome":"node_modules/@fortawesome/react-fontawesome/index.es.js"}],"node_modules/@fortawesome/free-brands-svg-icons/index.es.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -60955,7 +60984,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-_fontawesomeSvgCore.library.add(_freeBrandsSvgIcons.fab, _freeSolidSvgIcons.faThermometerFull, _freeSolidSvgIcons.faThermometerHalf, _freeSolidSvgIcons.faThermometerQuarter);
+_fontawesomeSvgCore.library.add(_freeBrandsSvgIcons.fab, _freeSolidSvgIcons.faThermometerFull, _freeSolidSvgIcons.faThermometerHalf, _freeSolidSvgIcons.faThermometerQuarter, _freeSolidSvgIcons.faBug);
 
 var address;
 
@@ -61001,12 +61030,18 @@ function (_React$Component2) {
       }, _react.default.createElement("div", {
         className: "app row"
       }, _react.default.createElement("div", {
-        className: "col-md-4"
+        className: "col-md-1"
       }), _react.default.createElement("div", {
-        className: "col-md-4"
+        className: "col-md-10 text-center"
       }, _react.default.createElement(Hello, null)), _react.default.createElement("div", {
-        className: "col-md-4"
-      }), _react.default.createElement(_requestPlace.InputAddress, null)));
+        className: "col-md-1"
+      }), _react.default.createElement("div", {
+        className: "col-md-1"
+      }), _react.default.createElement("div", {
+        className: "col-md-10 text-center"
+      }, _react.default.createElement(_requestPlace.InputAddress, null)), _react.default.createElement("div", {
+        className: "col-md-1"
+      })));
     }
   }]);
 

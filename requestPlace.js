@@ -5,6 +5,7 @@ import { findCounty } from "./findCounty";
 import { findCountry } from "./findCountry";
 import { findState } from "./findState";
 import { FindParasites } from "./findParasites";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 let address;
 
@@ -33,7 +34,7 @@ function getDetails(returnCounty, returnState, returnError) {
       }
     })
     .catch(e => {
-      returnError("Please enter valid place within the USA or Canada");
+      returnError("Please enter valid place within the US");
     });
 }
 
@@ -79,11 +80,14 @@ export class InputAddress extends React.Component {
       return <p>{this.state.error}</p>;
     } else {
       return this.state.county.length > 0 ? (
-        <p>
-          You live in {this.state.county}, {this.state.state}
-        </p>
+        <div>
+          <p>
+            You live in {this.state.county}, {this.state.state}.
+          </p>
+          <p>The local parasitic diseases in your area are:</p>
+        </div>
       ) : (
-        <p>Submit a address please</p>
+        <FontAwesomeIcon icon="bug" />
       );
     }
   }
@@ -91,17 +95,25 @@ export class InputAddress extends React.Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
+      
         <label>
-          Enter a place:
+          <span className="label">
+            Enter your city or town within the US to learn about your local
+            parasites and the diseases they carry.
+          </span>
+
           <input
             type="text"
             value={this.state.value}
+            placeholder="eg. San Francisco"
             onChange={e => this.setState({ value: e.target.value })}
           />
         </label>
-        <input type="submit" value="Find my county!" />
+        <span className="label button">
+          <input type="submit" value="Submit" className="btn btn-outline-primary btn-lg" />
+        </span>
         {this.renderAnswer()}
-        <FindParasites county={this.state.county} state={this.state.state}/>
+        <FindParasites county={this.state.county} state={this.state.state} />
       </form>
     );
   }

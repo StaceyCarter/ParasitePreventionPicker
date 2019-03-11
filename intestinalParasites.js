@@ -1,4 +1,5 @@
 import React from 'react';
+import { riskImageDetector } from './riskImageDecider';
 
 export class Hookworm extends React.Component {
     constructor(props) {
@@ -9,7 +10,7 @@ export class Hookworm extends React.Component {
       if (this.props) {
         return (
           <div>
-            <p>The risk of hookworm is {this.props.risk}.</p>
+            <p>The risk of hookworm is {this.props.risk} {riskImageDetector(this.props.risk)}.</p>
             <p>
               The percentage of animals who tested positive is{" "}
               {this.props.percentage}%
@@ -30,7 +31,7 @@ export class Hookworm extends React.Component {
       if (this.props) {
         return (
           <div>
-            <p>The risk of whipworm is {this.props.risk}.</p>
+            <p>The risk of whipworm is {this.props.risk} {riskImageDetector(this.props.risk)}.</p>
             <p>
               The percentage of animals who tested positive is{" "}
               {this.props.percentage}%
@@ -51,7 +52,7 @@ export class Hookworm extends React.Component {
       if (this.props) {
         return (
           <div>
-            <p>The risk of giardia is {this.props.risk}.</p>
+            <p>The risk of giardia is {this.props.risk} {riskImageDetector(this.props.risk)}.</p>
             <p>
               The percentage of animals who tested positive is{" "}
               {this.props.percentage}%
@@ -72,7 +73,7 @@ export class Hookworm extends React.Component {
       if (this.props) {
         return (
           <div>
-            <p>The risk of roundworm is {this.props.risk}.</p>
+            <p>The risk of roundworm is {this.props.risk} {riskImageDetector(this.props.risk)}.</p>
             <p>
               The percentage of animals who tested positive is{" "}
               {this.props.percentage}%

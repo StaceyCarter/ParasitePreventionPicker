@@ -2,6 +2,7 @@ import React from "react";
 import { getData } from "./importData";
 import { Lyme, Anaplasmosis, Erlichiosis } from "./tickBorneDiseases.js";
 import { Hookworm, Whipworm, Giardia, Roundworm } from "./intestinalParasites";
+import { riskImageDetector } from './riskImageDecider';
 
 export class FindParasites extends React.Component {
   constructor(props) {
@@ -73,7 +74,7 @@ export class FindParasites extends React.Component {
         )}
         
         <h2>Heartworm</h2>
-        <p>Risk: {info.Heartworm[0]}</p>
+        <p>Risk: {info.Heartworm[0]} {riskImageDetector(info.Heartworm[0])}</p>
         <p>
           The percentage of animals who test positive is {info.Heartworm[1]}%
         </p>
@@ -170,9 +171,7 @@ export class FindParasites extends React.Component {
     }
     return (
       <p>
-        {" "}
-        hello i am a parasite who lives in {this.props.county} in{" "}
-        {this.props.state}{" "}
+        
       </p>
     );
   }

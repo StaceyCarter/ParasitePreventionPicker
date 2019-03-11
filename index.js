@@ -4,10 +4,10 @@ import { InputAddress } from "./requestPlace.js";
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
-import { faThermometerHalf, faThermometerFull, faThermometerQuarter } from '@fortawesome/free-solid-svg-icons'
+import { faThermometerHalf, faThermometerFull, faThermometerQuarter, faBug } from '@fortawesome/free-solid-svg-icons'
  
 
-library.add(fab, faThermometerFull, faThermometerHalf, faThermometerQuarter)
+library.add(fab, faThermometerFull, faThermometerHalf, faThermometerQuarter, faBug)
 
 
 let address;
@@ -23,12 +23,17 @@ class App extends React.Component {
     return (
       <div className="container">
         <div className="app row">
-          <div className="col-md-4"></div>
-          <div className="col-md-4">
+          <div className="col-md-1"></div>
+          <div className="col-md-10 text-center">
           <Hello />
           </div>
-          <div className="col-md-4"></div>
+          <div className="col-md-1"></div>
+          <div className="col-md-1"></div>
+          <div className="col-md-10 text-center">
           <InputAddress />
+          </div>
+          <div className="col-md-1"></div>
+
           
         </div>
       </div>
