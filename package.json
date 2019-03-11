@@ -17,6 +17,12 @@
   },
   "homepage": "https://github.com/quakerface/ParasitePreventionPicker#readme",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.15",
+    "@fortawesome/free-brands-svg-icons": "^5.7.2",
+    "@fortawesome/free-regular-svg-icons": "^5.7.2",
+    "@fortawesome/free-solid-svg-icons": "^5.7.2",
+    "@fortawesome/react-fontawesome": "^0.1.4",
+    "fontawesome": "^5.6.3",
     "react": "^16.8.4",
     "react-dom": "^16.8.4"
   }
