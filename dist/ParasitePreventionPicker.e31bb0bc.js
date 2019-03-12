@@ -50889,7 +50889,7 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       if (this.props) {
-        return _react.default.createElement("div", null, _react.default.createElement("p", null, "The risk of lyme disease is ", this.props.risk, " ", (0, _riskImageDecider.riskImageDetector)(this.props.risk), "."), _react.default.createElement("p", null, "The percentage of animals who tested positive is", " ", this.props.percentage, "%"));
+        return _react.default.createElement("div", null, _react.default.createElement("p", null, "Risk: ", this.props.risk, " ", (0, _riskImageDecider.riskImageDetector)(this.props.risk), "."), _react.default.createElement("p", null, this.props.percentage, "% of animals tested positive in your area."));
       }
 
       return _react.default.createElement("p", null);
@@ -50916,7 +50916,7 @@ function (_React$Component2) {
     key: "render",
     value: function render() {
       if (this.props) {
-        return _react.default.createElement("div", null, _react.default.createElement("p", null, "The risk of anaplasmosis is ", this.props.risk, " ", (0, _riskImageDecider.riskImageDetector)(this.props.risk), "."), _react.default.createElement("p", null, "The percentage of animals who tested positive is", " ", this.props.percentage, "%"));
+        return _react.default.createElement("div", null, _react.default.createElement("p", null, "Risk: ", this.props.risk, " ", (0, _riskImageDecider.riskImageDetector)(this.props.risk), "."), _react.default.createElement("p", null, this.props.percentage, "% of animals tested positive in your area."));
       }
 
       return _react.default.createElement("p", null);
@@ -50943,7 +50943,7 @@ function (_React$Component3) {
     key: "render",
     value: function render() {
       if (this.props) {
-        return _react.default.createElement("div", null, _react.default.createElement("p", null, "The risk of erlichiosis is ", this.props.risk, " ", (0, _riskImageDecider.riskImageDetector)(this.props.risk), "."), _react.default.createElement("p", null, "The percentage of animals who tested positive is", " ", this.props.percentage, "%"));
+        return _react.default.createElement("div", null, _react.default.createElement("p", null, "Risk: ", this.props.risk, " ", (0, _riskImageDecider.riskImageDetector)(this.props.risk), "."), _react.default.createElement("p", null, this.props.percentage, "% of animals tested positive in your area."));
       }
 
       return _react.default.createElement("p", null);
@@ -51001,7 +51001,7 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       if (this.props) {
-        return _react.default.createElement("div", null, _react.default.createElement("p", null, "The risk of hookworm is ", this.props.risk, " ", (0, _riskImageDecider.riskImageDetector)(this.props.risk), "."), _react.default.createElement("p", null, "The percentage of animals who tested positive is", " ", this.props.percentage, "%"));
+        return _react.default.createElement("div", null, _react.default.createElement("p", null, "Risk: ", this.props.risk, " ", (0, _riskImageDecider.riskImageDetector)(this.props.risk), "."), _react.default.createElement("p", null, this.props.percentage, "% of animals tested positive in your area."));
       }
 
       return _react.default.createElement("p", null);
@@ -51028,7 +51028,7 @@ function (_React$Component2) {
     key: "render",
     value: function render() {
       if (this.props) {
-        return _react.default.createElement("div", null, _react.default.createElement("p", null, "The risk of whipworm is ", this.props.risk, " ", (0, _riskImageDecider.riskImageDetector)(this.props.risk), "."), _react.default.createElement("p", null, "The percentage of animals who tested positive is", " ", this.props.percentage, "%"));
+        return _react.default.createElement("div", null, _react.default.createElement("p", null, "Risk: ", this.props.risk, " ", (0, _riskImageDecider.riskImageDetector)(this.props.risk), "."), _react.default.createElement("p", null, this.props.percentage, "% of animals tested positive in your area."));
       }
 
       return _react.default.createElement("p", null);
@@ -51055,7 +51055,7 @@ function (_React$Component3) {
     key: "render",
     value: function render() {
       if (this.props) {
-        return _react.default.createElement("div", null, _react.default.createElement("p", null, "The risk of giardia is ", this.props.risk, " ", (0, _riskImageDecider.riskImageDetector)(this.props.risk), "."), _react.default.createElement("p", null, "The percentage of animals who tested positive is", " ", this.props.percentage, "%"));
+        return _react.default.createElement("div", null, _react.default.createElement("p", null, "Risk: ", this.props.risk, " ", (0, _riskImageDecider.riskImageDetector)(this.props.risk), "."), _react.default.createElement("p", null, this.props.percentage, "% of animals tested positive in your area."));
       }
 
       return _react.default.createElement("p", null);
@@ -51082,7 +51082,7 @@ function (_React$Component4) {
     key: "render",
     value: function render() {
       if (this.props) {
-        return _react.default.createElement("div", null, _react.default.createElement("p", null, "The risk of roundworm is ", this.props.risk, " ", (0, _riskImageDecider.riskImageDetector)(this.props.risk), "."), _react.default.createElement("p", null, "The percentage of animals who tested positive is", " ", this.props.percentage, "%"));
+        return _react.default.createElement("div", null, _react.default.createElement("p", null, "Risk: ", this.props.risk, " ", (0, _riskImageDecider.riskImageDetector)(this.props.risk), "."), _react.default.createElement("p", null, this.props.percentage, "% of animals tested positive in your area."));
       }
 
       return _react.default.createElement("p", null);

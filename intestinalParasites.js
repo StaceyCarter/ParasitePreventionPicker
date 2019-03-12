@@ -10,10 +10,9 @@ export class Hookworm extends React.Component {
       if (this.props) {
         return (
           <div>
-            <p>The risk of hookworm is {this.props.risk} {riskImageDetector(this.props.risk)}.</p>
+            <p>Risk: {this.props.risk} {riskImageDetector(this.props.risk)}.</p>
             <p>
-              The percentage of animals who tested positive is{" "}
-              {this.props.percentage}%
+              {this.props.percentage}% of animals tested positive in your area.
             </p>
           </div>
         );
@@ -31,10 +30,9 @@ export class Hookworm extends React.Component {
       if (this.props) {
         return (
           <div>
-            <p>The risk of whipworm is {this.props.risk} {riskImageDetector(this.props.risk)}.</p>
+            <p>Risk: {this.props.risk} {riskImageDetector(this.props.risk)}.</p>
             <p>
-              The percentage of animals who tested positive is{" "}
-              {this.props.percentage}%
+              {this.props.percentage}% of animals tested positive in your area.
             </p>
           </div>
         );
@@ -52,10 +50,9 @@ export class Hookworm extends React.Component {
       if (this.props) {
         return (
           <div>
-            <p>The risk of giardia is {this.props.risk} {riskImageDetector(this.props.risk)}.</p>
+            <p>Risk: {this.props.risk} {riskImageDetector(this.props.risk)}.</p>
             <p>
-              The percentage of animals who tested positive is{" "}
-              {this.props.percentage}%
+              {this.props.percentage}% of animals tested positive in your area.
             </p>
           </div>
         );
@@ -73,10 +70,9 @@ export class Hookworm extends React.Component {
       if (this.props) {
         return (
           <div>
-            <p>The risk of roundworm is {this.props.risk} {riskImageDetector(this.props.risk)}.</p>
+            <p>Risk: {this.props.risk} {riskImageDetector(this.props.risk)}.</p>
             <p>
-              The percentage of animals who tested positive is{" "}
-              {this.props.percentage}%
+              {this.props.percentage}% of animals tested positive in your area.
             </p>
           </div>
         );
