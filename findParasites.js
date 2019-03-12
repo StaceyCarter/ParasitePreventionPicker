@@ -20,18 +20,18 @@ export class FindParasites extends React.Component {
         <div className="disease-class">
           <h2>Tick borne diseases:</h2>
           <div className="row">
-            <div className="col-sm-4">
+            <div className="col-md-4">
               <h3 className="disease-heading">Lyme</h3>
               <Lyme risk={info.Lyme[0]} percentage={info.Lyme[1]} />
             </div>
-            <div className="col-sm-4">
+            <div className="col-md-4">
               <h3 className="disease-heading">Anaplasmosis</h3>
               <Anaplasmosis
                 risk={info.Anaplasmosis[0]}
                 percentage={info.Anaplasmosis[1]}
               />
             </div>
-            <div className="col-sm-4">
+            <div className="col-md-4">
               <h3 className="disease-heading">Erlichiosis</h3>
               <Erlichiosis
                 risk={info.Erlichiosis[0]}
@@ -47,24 +47,37 @@ export class FindParasites extends React.Component {
             )}
           </div>
         </div>
-        <div>
+        <div className="disease-class">
           <h2>Intestinal parasites</h2>
           <div className="row">
-            <div className="col-sm-4">
+            <div className="col-lg-4">
               <h3 className="disease-heading">Roundworm</h3>
               <Roundworm
                 risk={info.Roundworm[0]}
                 percentage={info.Roundworm[1]}
               />
             </div>
-            <div className="col-sm-4">
+            <div className="col-lg-4">
               <h3 className="disease-heading">Hookworm</h3>
               <Hookworm risk={info.Hookworm[0]} percentage={info.Hookworm[1]} />
             </div>
-            <div className="col-sm-4">
+            <div className="col-lg-4">
               <h3 className="disease-heading">Whipworm</h3>
               <Whipworm risk={info.Whipworm[0]} percentage={info.Whipworm[1]} />
             </div>
+          </div>
+          <div className="row row-two">
+          <div className="col-md-4 offset-md-2">
+          <h3 className="disease-heading">Giardia</h3>
+          <Giardia risk={info.Giardia[0]} percentage={info.Giardia[1]} />
+          </div>
+          <div className="giardia-explanation disease-explanation col-md-4">
+            {info.Giardia[0] === "high" ? (
+              <p>!!Risk of giardia is high in your area!!</p>
+            ) : (
+              ""
+            )}
+          </div>
           </div>
           <div className="disease-explanation">
             {this.findWormRisk(
@@ -74,17 +87,8 @@ export class FindParasites extends React.Component {
               info.Giardia[0]
             )}
           </div>
-          <h3 className="disease-heading">Giardia</h3>
-          <Giardia risk={info.Giardia[0]} percentage={info.Giardia[1]} />
-          <div className="disease-explanation">
-            {info.Giardia[0] === "high" ? (
-              <p>!!Risk of giardia is high in your area!!</p>
-            ) : (
-              ""
-            )}
-          </div>
         </div>
-        <div>
+        <div className="disease-class">
           <h2>Heartworm</h2>
           <p>
             Risk: {info.Heartworm[0]} {riskImageDetector(info.Heartworm[0])}

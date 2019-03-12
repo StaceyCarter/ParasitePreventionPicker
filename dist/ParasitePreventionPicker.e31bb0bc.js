@@ -51158,21 +51158,21 @@ function (_React$Component) {
       }, _react.default.createElement("h2", null, "Tick borne diseases:"), _react.default.createElement("div", {
         className: "row"
       }, _react.default.createElement("div", {
-        className: "col-sm-4"
+        className: "col-md-4"
       }, _react.default.createElement("h3", {
         className: "disease-heading"
       }, "Lyme"), _react.default.createElement(_tickBorneDiseases.Lyme, {
         risk: info.Lyme[0],
         percentage: info.Lyme[1]
       })), _react.default.createElement("div", {
-        className: "col-sm-4"
+        className: "col-md-4"
       }, _react.default.createElement("h3", {
         className: "disease-heading"
       }, "Anaplasmosis"), _react.default.createElement(_tickBorneDiseases.Anaplasmosis, {
         risk: info.Anaplasmosis[0],
         percentage: info.Anaplasmosis[1]
       })), _react.default.createElement("div", {
-        className: "col-sm-4"
+        className: "col-md-4"
       }, _react.default.createElement("h3", {
         className: "disease-heading"
       }, "Erlichiosis"), _react.default.createElement(_tickBorneDiseases.Erlichiosis, {
@@ -51180,39 +51180,47 @@ function (_React$Component) {
         percentage: info.Erlichiosis[1]
       }))), _react.default.createElement("div", {
         className: "disease-explanation"
-      }, this.findTickRisk(info.Lyme[0], info.Anaplasmosis[0], info.Erlichiosis[0]))), _react.default.createElement("div", null, _react.default.createElement("h2", null, "Intestinal parasites"), _react.default.createElement("div", {
+      }, this.findTickRisk(info.Lyme[0], info.Anaplasmosis[0], info.Erlichiosis[0]))), _react.default.createElement("div", {
+        className: "disease-class"
+      }, _react.default.createElement("h2", null, "Intestinal parasites"), _react.default.createElement("div", {
         className: "row"
       }, _react.default.createElement("div", {
-        className: "col-sm-4"
+        className: "col-lg-4"
       }, _react.default.createElement("h3", {
         className: "disease-heading"
       }, "Roundworm"), _react.default.createElement(_intestinalParasites.Roundworm, {
         risk: info.Roundworm[0],
         percentage: info.Roundworm[1]
       })), _react.default.createElement("div", {
-        className: "col-sm-4"
+        className: "col-lg-4"
       }, _react.default.createElement("h3", {
         className: "disease-heading"
       }, "Hookworm"), _react.default.createElement(_intestinalParasites.Hookworm, {
         risk: info.Hookworm[0],
         percentage: info.Hookworm[1]
       })), _react.default.createElement("div", {
-        className: "col-sm-4"
+        className: "col-lg-4"
       }, _react.default.createElement("h3", {
         className: "disease-heading"
       }, "Whipworm"), _react.default.createElement(_intestinalParasites.Whipworm, {
         risk: info.Whipworm[0],
         percentage: info.Whipworm[1]
       }))), _react.default.createElement("div", {
-        className: "disease-explanation"
-      }, this.findWormRisk(info.Roundworm[0], info.Hookworm[0], info.Whipworm[0], info.Giardia[0])), _react.default.createElement("h3", {
+        className: "row row-two"
+      }, _react.default.createElement("div", {
+        className: "col-md-4 offset-md-2"
+      }, _react.default.createElement("h3", {
         className: "disease-heading"
       }, "Giardia"), _react.default.createElement(_intestinalParasites.Giardia, {
         risk: info.Giardia[0],
         percentage: info.Giardia[1]
-      }), _react.default.createElement("div", {
+      })), _react.default.createElement("div", {
+        className: "giardia-explanation disease-explanation col-md-4"
+      }, info.Giardia[0] === "high" ? _react.default.createElement("p", null, "!!Risk of giardia is high in your area!!") : "")), _react.default.createElement("div", {
         className: "disease-explanation"
-      }, info.Giardia[0] === "high" ? _react.default.createElement("p", null, "!!Risk of giardia is high in your area!!") : "")), _react.default.createElement("div", null, _react.default.createElement("h2", null, "Heartworm"), _react.default.createElement("p", null, "Risk: ", info.Heartworm[0], " ", (0, _riskImageDecider.riskImageDetector)(info.Heartworm[0])), _react.default.createElement("p", null, "The percentage of animals who test positive is ", info.Heartworm[1], "%"), _react.default.createElement("div", {
+      }, this.findWormRisk(info.Roundworm[0], info.Hookworm[0], info.Whipworm[0], info.Giardia[0]))), _react.default.createElement("div", {
+        className: "disease-class"
+      }, _react.default.createElement("h2", null, "Heartworm"), _react.default.createElement("p", null, "Risk: ", info.Heartworm[0], " ", (0, _riskImageDecider.riskImageDetector)(info.Heartworm[0])), _react.default.createElement("p", null, "The percentage of animals who test positive is ", info.Heartworm[1], "%"), _react.default.createElement("div", {
         className: "disease-explanation"
       }, this.findHeartWormRisk(info.Heartworm[0]))));
     }
@@ -51444,7 +51452,7 @@ function (_React$Component) {
         return this.state.county.length > 0 ? _react.default.createElement("div", null, _react.default.createElement("p", null, "You live in ", this.state.county, ", ", this.state.state, "."), _react.default.createElement("p", null, "The local parasitic diseases in your area are:")) : _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
           icon: "bug",
           size: "3x",
-          color: "green"
+          color: "#A8D0E6"
         });
       }
     }
@@ -61042,7 +61050,7 @@ function (_React$Component) {
     value: function render() {
       return _react.default.createElement("h1", {
         className: "page-header"
-      }, "Parasite prevention picker for dogs");
+      }, "Parasitic disease risk in the USA");
     }
   }]);
 
@@ -61106,7 +61114,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51395" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55872" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

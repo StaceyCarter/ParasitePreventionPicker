@@ -1,7 +1,16 @@
 .page-header {
-    color: blue;
+    color:  #374785;
     margin: 10%;
     margin-bottom: 4%;
+    font-size: 4rem;
+    text-shadow: 1px 1px 2px #A8D0E6;
+}
+body {
+    background: linear-gradient(rgba(201,226,158, 0.1), rgba(201,226,158, 0.3)), url(/crossword.png);
+    height: 100%, 100%;
+    margin: 0, 0;
+    background-repeat: repeat;
+    background-attachment: fixed;
 }
 
 .label {
@@ -18,6 +27,8 @@
 h1, h2 {
     font-family: 'Inconsolata', monospace;
     padding: 3%;
+    color: #F76c6c;
+    font-size: 2.8rem;
 }
 
 h3 {
@@ -41,6 +52,11 @@ p {
 .disease-class {
     padding: 2%;
     margin: 5%;
+    background: rgba(168,208,230, 0.2);
+    padding: 10%;
+
+
+    
 }
 
 .disease-heading {
@@ -55,5 +71,24 @@ p {
 
 .info {
     margin-bottom: 15%;
+}
+
+.btn {
+    color: #F76C6c;
+    border-color: #F76C6c;
+    
+}
+
+.btn:hover{
+    background-color: #A8D0E6;
+    border-color: #A8D0E6;;
+}
+
+.giardia-explanation{
+    border: none;
+}
+
+.row-two{
+    margin-top: 2%;
 }
 

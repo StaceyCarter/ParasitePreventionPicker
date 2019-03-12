@@ -87,7 +87,9 @@ export class InputAddress extends React.Component {
           <p>The local parasitic diseases in your area are:</p>
         </div>
       ) : (
-        <FontAwesomeIcon icon="bug" size="3x" color="green"/>
+        
+        <FontAwesomeIcon icon="bug" size="3x" color="#A8D0E6"/>
+        
       );
     }
   }
