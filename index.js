@@ -14,7 +14,7 @@ let address;
 
 class Hello extends React.Component {
   render() {
-    return <h1 className="page-header">Parasitic disease risk in the USA</h1>;
+    return <h1 className="page-header">Parasitic disease risk for dogs in the USA</h1>;
   }
 }
 

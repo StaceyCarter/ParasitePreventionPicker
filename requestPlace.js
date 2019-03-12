@@ -81,8 +81,8 @@ export class InputAddress extends React.Component {
     } else {
       return this.state.county.length > 0 ? (
         <div>
-          <p>
-            You live in {this.state.county}, {this.state.state}.
+          <p className="location">
+            You live in <strong>{this.state.county}, {this.state.state}</strong>.
           </p>
           <p>The local parasitic diseases in your area are:</p>
         </div>

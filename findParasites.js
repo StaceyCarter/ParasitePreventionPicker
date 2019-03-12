@@ -3,6 +3,7 @@ import { getData } from "./importData";
 import { Lyme, Anaplasmosis, Erlichiosis } from "./tickBorneDiseases.js";
 import { Hookworm, Whipworm, Giardia, Roundworm } from "./intestinalParasites";
 import { riskImageDetector } from "./riskImageDecider";
+import ReactSVG from 'react-svg';
 
 export class FindParasites extends React.Component {
   constructor(props) {
@@ -19,6 +20,8 @@ export class FindParasites extends React.Component {
       <div>
         <div className="disease-class">
           <h2>Tick borne diseases:</h2>
+          <ReactSVG src="./images/tick.svg" />
+
           <div className="row">
             <div className="col-md-4">
               <h3 className="disease-heading">Lyme</h3>
@@ -49,6 +52,7 @@ export class FindParasites extends React.Component {
         </div>
         <div className="disease-class">
           <h2>Intestinal parasites</h2>
+          <ReactSVG src="./images/flea.svg" />
           <div className="row">
             <div className="col-lg-4">
               <h3 className="disease-heading">Roundworm</h3>
