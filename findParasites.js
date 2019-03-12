@@ -53,6 +53,7 @@ export class FindParasites extends React.Component {
         <div className="disease-class">
           <h2>Intestinal parasites</h2>
           <ReactSVG src="./images/flea.svg" />
+          <ReactSVG src="./images/worm.svg" />
           <div className="row">
             <div className="col-lg-4">
               <h3 className="disease-heading">Roundworm</h3>
@@ -94,6 +95,7 @@ export class FindParasites extends React.Component {
         </div>
         <div className="disease-class">
           <h2>Heartworm</h2>
+          <ReactSVG src="./images/heartworm.svg" />
           <p>
             Risk: {info.Heartworm[0]} {riskImageDetector(info.Heartworm[0])}
           </p>

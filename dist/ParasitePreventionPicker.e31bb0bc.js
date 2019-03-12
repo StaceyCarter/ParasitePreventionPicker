@@ -55756,6 +55756,8 @@ function (_React$Component) {
         className: "disease-class"
       }, _react.default.createElement("h2", null, "Intestinal parasites"), _react.default.createElement(_reactSvg.default, {
         src: "./images/flea.svg"
+      }), _react.default.createElement(_reactSvg.default, {
+        src: "./images/worm.svg"
       }), _react.default.createElement("div", {
         className: "row"
       }, _react.default.createElement("div", {
@@ -55794,7 +55796,9 @@ function (_React$Component) {
         className: "disease-explanation"
       }, this.findWormRisk(info.Roundworm[0], info.Hookworm[0], info.Whipworm[0], info.Giardia[0]))), _react.default.createElement("div", {
         className: "disease-class"
-      }, _react.default.createElement("h2", null, "Heartworm"), _react.default.createElement("p", null, "Risk: ", info.Heartworm[0], " ", (0, _riskImageDecider.riskImageDetector)(info.Heartworm[0])), _react.default.createElement("p", null, "The percentage of animals who test positive is ", info.Heartworm[1], "%"), _react.default.createElement("div", {
+      }, _react.default.createElement("h2", null, "Heartworm"), _react.default.createElement(_reactSvg.default, {
+        src: "./images/heartworm.svg"
+      }), _react.default.createElement("p", null, "Risk: ", info.Heartworm[0], " ", (0, _riskImageDecider.riskImageDetector)(info.Heartworm[0])), _react.default.createElement("p", null, "The percentage of animals who test positive is ", info.Heartworm[1], "%"), _react.default.createElement("div", {
         className: "disease-explanation"
       }, this.findHeartWormRisk(info.Heartworm[0]))));
     }
@@ -65690,7 +65694,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64994" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49741" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
