@@ -14,7 +14,7 @@ let address;
 
 class Hello extends React.Component {
   render() {
-    return <h1 class="page-header">Parasite prevention picker for dogs</h1>;
+    return <h1 className="page-header">Parasite prevention picker for dogs</h1>;
   }
 }
 
@@ -23,16 +23,13 @@ class App extends React.Component {
     return (
       <div className="container">
         <div className="app row">
-          <div className="col-md-1"></div>
-          <div className="col-md-10 text-center">
+          <div className="col-md-10 offset-md-1 text-center">
           <Hello />
           </div>
-          <div className="col-md-1"></div>
-          <div className="col-md-1"></div>
-          <div className="col-md-10 text-center">
+          <div className="col-md-10 offset-md-1 text-center">
           <InputAddress />
           </div>
-          <div className="col-md-1"></div>
+       
 
           
         </div>

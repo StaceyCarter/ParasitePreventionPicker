@@ -7,6 +7,48 @@
 .label {
     display: block;
     margin-bottom: 3%;
+    margin-top: 2%;
+}
+
+.info {
+    margin-top: 3%;
+}
+
+h1, h2 {
+    font-family: 'Inconsolata', monospace;
+    padding: 3%;
+}
+
+h3 {
+    font-family: 'Raleway', sans-serif;
+    
+}
+
+p {
+    font-family: 'Raleway', sans-serif;
+}
+
+.submit-button {
+    width: 100%;
     margin-top: 1%;
+}
+
+.error {
+   color: red;
+}
+
+.disease-class {
+    padding: 2%;
+    margin: 5%;
+}
+
+.disease-heading {
+    padding-bottom: 5%;
+}
+
+.disease-explanation {
+    padding-top: 3%;
+    margin-top: 3%;
+    border-top: 3px dashed #A9A9A9;
 }
 

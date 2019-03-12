@@ -77,7 +77,7 @@ export class InputAddress extends React.Component {
 
   renderAnswer() {
     if (this.state.error) {
-      return <p>{this.state.error}</p>;
+      return <p className="error">{this.state.error}</p>;
     } else {
       return this.state.county.length > 0 ? (
         <div>
@@ -87,7 +87,7 @@ export class InputAddress extends React.Component {
           <p>The local parasitic diseases in your area are:</p>
         </div>
       ) : (
-        <FontAwesomeIcon icon="bug" />
+        <FontAwesomeIcon icon="bug" size="3x" color="green"/>
       );
     }
   }
@@ -95,25 +95,32 @@ export class InputAddress extends React.Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-      
-        <label>
-          <span className="label">
+      <div className="form-group">
+        <label htmlFor="placeName">
+          <span className="label col-sm-10 offset-sm-1">
             Enter your city or town within the US to learn about your local
             parasites and the diseases they carry.
-          </span>
-
+            </span>
+           </label>
+           <div className="col-sm-10 offset-sm-1 form-group">
           <input
             type="text"
+            id="placeName"
+            className="form-control"
             value={this.state.value}
             placeholder="eg. San Francisco"
             onChange={e => this.setState({ value: e.target.value })}
           />
-        </label>
-        <span className="label button">
-          <input type="submit" value="Submit" className="btn btn-outline-primary btn-lg" />
+        
+        <span className="button">
+          <input type="submit" value="Submit" className="btn btn-outline-primary submit-button" />
         </span>
+        </div>
+      </div>
+      <div className="info">
         {this.renderAnswer()}
         <FindParasites county={this.state.county} state={this.state.state} />
+        </div>
       </form>
     );
   }

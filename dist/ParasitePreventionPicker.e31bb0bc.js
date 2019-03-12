@@ -51153,44 +51153,68 @@ function (_React$Component) {
       var stateLocation = this.props.state;
       var info = (0, _importData.getData)(stateLocation);
       console.log(info);
-      return _react.default.createElement("div", null, _react.default.createElement("h2", null, "Tick borne diseases:"), _react.default.createElement("div", {
-        class: "row"
+      return _react.default.createElement("div", null, _react.default.createElement("div", {
+        className: "disease-class"
+      }, _react.default.createElement("h2", null, "Tick borne diseases:"), _react.default.createElement("div", {
+        className: "row"
       }, _react.default.createElement("div", {
-        class: "col-sm-4"
-      }, _react.default.createElement("h3", null, "Lyme"), _react.default.createElement(_tickBorneDiseases.Lyme, {
+        className: "col-sm-4"
+      }, _react.default.createElement("h3", {
+        className: "disease-heading"
+      }, "Lyme"), _react.default.createElement(_tickBorneDiseases.Lyme, {
         risk: info.Lyme[0],
         percentage: info.Lyme[1]
       })), _react.default.createElement("div", {
-        class: "col-sm-4"
-      }, _react.default.createElement("h3", null, "Anaplasmosis"), _react.default.createElement(_tickBorneDiseases.Anaplasmosis, {
+        className: "col-sm-4"
+      }, _react.default.createElement("h3", {
+        className: "disease-heading"
+      }, "Anaplasmosis"), _react.default.createElement(_tickBorneDiseases.Anaplasmosis, {
         risk: info.Anaplasmosis[0],
         percentage: info.Anaplasmosis[1]
       })), _react.default.createElement("div", {
-        class: "col-sm-4"
-      }, _react.default.createElement("h3", null, "Erlichiosis"), _react.default.createElement(_tickBorneDiseases.Erlichiosis, {
+        className: "col-sm-4"
+      }, _react.default.createElement("h3", {
+        className: "disease-heading"
+      }, "Erlichiosis"), _react.default.createElement(_tickBorneDiseases.Erlichiosis, {
         risk: info.Erlichiosis[0],
         percentage: info.Erlichiosis[1]
-      }))), this.findTickRisk(info.Lyme[0], info.Anaplasmosis[0], info.Erlichiosis[0]), _react.default.createElement("h2", null, "Intestinal parasites"), _react.default.createElement("div", {
-        class: "row"
+      }))), _react.default.createElement("div", {
+        className: "disease-explanation"
+      }, this.findTickRisk(info.Lyme[0], info.Anaplasmosis[0], info.Erlichiosis[0]))), _react.default.createElement("div", null, _react.default.createElement("h2", null, "Intestinal parasites"), _react.default.createElement("div", {
+        className: "row"
       }, _react.default.createElement("div", {
-        class: "col-sm-4"
-      }, _react.default.createElement("h3", null, "Roundworm"), _react.default.createElement(_intestinalParasites.Roundworm, {
+        className: "col-sm-4"
+      }, _react.default.createElement("h3", {
+        className: "disease-heading"
+      }, "Roundworm"), _react.default.createElement(_intestinalParasites.Roundworm, {
         risk: info.Roundworm[0],
         percentage: info.Roundworm[1]
       })), _react.default.createElement("div", {
-        class: "col-sm-4"
-      }, _react.default.createElement("h3", null, "Hookworm"), _react.default.createElement(_intestinalParasites.Hookworm, {
+        className: "col-sm-4"
+      }, _react.default.createElement("h3", {
+        className: "disease-heading"
+      }, "Hookworm"), _react.default.createElement(_intestinalParasites.Hookworm, {
         risk: info.Hookworm[0],
         percentage: info.Hookworm[1]
       })), _react.default.createElement("div", {
-        class: "col-sm-4"
-      }, _react.default.createElement("h3", null, "Whipworm"), _react.default.createElement(_intestinalParasites.Whipworm, {
+        className: "col-sm-4"
+      }, _react.default.createElement("h3", {
+        className: "disease-heading"
+      }, "Whipworm"), _react.default.createElement(_intestinalParasites.Whipworm, {
         risk: info.Whipworm[0],
         percentage: info.Whipworm[1]
-      }))), this.findWormRisk(info.Roundworm[0], info.Hookworm[0], info.Whipworm[0], info.Giardia[0]), _react.default.createElement("h3", null, "Giardia"), _react.default.createElement(_intestinalParasites.Giardia, {
+      }))), _react.default.createElement("div", {
+        className: "disease-explanation"
+      }, this.findWormRisk(info.Roundworm[0], info.Hookworm[0], info.Whipworm[0], info.Giardia[0])), _react.default.createElement("h3", {
+        className: "disease-heading"
+      }, "Giardia"), _react.default.createElement(_intestinalParasites.Giardia, {
         risk: info.Giardia[0],
         percentage: info.Giardia[1]
-      }), info.Giardia[0] === "high" ? _react.default.createElement("p", null, "!!Risk of giardia is high in your area!!") : "", _react.default.createElement("h2", null, "Heartworm"), _react.default.createElement("p", null, "Risk: ", info.Heartworm[0], " ", (0, _riskImageDecider.riskImageDetector)(info.Heartworm[0])), _react.default.createElement("p", null, "The percentage of animals who test positive is ", info.Heartworm[1], "%"), this.findHeartWormRisk(info.Heartworm[0]));
+      }), _react.default.createElement("div", {
+        className: "disease-explanation"
+      }, info.Giardia[0] === "high" ? _react.default.createElement("p", null, "!!Risk of giardia is high in your area!!") : "")), _react.default.createElement("div", null, _react.default.createElement("h2", null, "Heartworm"), _react.default.createElement("p", null, "Risk: ", info.Heartworm[0], " ", (0, _riskImageDecider.riskImageDetector)(info.Heartworm[0])), _react.default.createElement("p", null, "The percentage of animals who test positive is ", info.Heartworm[1], "%"), _react.default.createElement("div", {
+        className: "disease-explanation"
+      }, this.findHeartWormRisk(info.Heartworm[0]))));
     }
   }, {
     key: "findTickRisk",
@@ -51413,10 +51437,14 @@ function (_React$Component) {
     key: "renderAnswer",
     value: function renderAnswer() {
       if (this.state.error) {
-        return _react.default.createElement("p", null, this.state.error);
+        return _react.default.createElement("p", {
+          className: "error"
+        }, this.state.error);
       } else {
         return this.state.county.length > 0 ? _react.default.createElement("div", null, _react.default.createElement("p", null, "You live in ", this.state.county, ", ", this.state.state, "."), _react.default.createElement("p", null, "The local parasitic diseases in your area are:")) : _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
-          icon: "bug"
+          icon: "bug",
+          size: "3x",
+          color: "green"
         });
       }
     }
@@ -51427,10 +51455,18 @@ function (_React$Component) {
 
       return _react.default.createElement("form", {
         onSubmit: this.handleSubmit
-      }, _react.default.createElement("label", null, _react.default.createElement("span", {
-        className: "label"
-      }, "Enter your city or town within the US to learn about your local parasites and the diseases they carry."), _react.default.createElement("input", {
+      }, _react.default.createElement("div", {
+        className: "form-group"
+      }, _react.default.createElement("label", {
+        htmlFor: "placeName"
+      }, _react.default.createElement("span", {
+        className: "label col-sm-10 offset-sm-1"
+      }, "Enter your city or town within the US to learn about your local parasites and the diseases they carry.")), _react.default.createElement("div", {
+        className: "col-sm-10 offset-sm-1 form-group"
+      }, _react.default.createElement("input", {
         type: "text",
+        id: "placeName",
+        className: "form-control",
         value: this.state.value,
         placeholder: "eg. San Francisco",
         onChange: function onChange(e) {
@@ -51438,16 +51474,18 @@ function (_React$Component) {
             value: e.target.value
           });
         }
-      })), _react.default.createElement("span", {
-        className: "label button"
+      }), _react.default.createElement("span", {
+        className: "button"
       }, _react.default.createElement("input", {
         type: "submit",
         value: "Submit",
-        className: "btn btn-outline-primary btn-lg"
-      })), this.renderAnswer(), _react.default.createElement(_findParasites.FindParasites, {
+        className: "btn btn-outline-primary submit-button"
+      })))), _react.default.createElement("div", {
+        className: "info"
+      }, this.renderAnswer(), _react.default.createElement(_findParasites.FindParasites, {
         county: this.state.county,
         state: this.state.state
-      }));
+      })));
     }
   }]);
 
@@ -61003,7 +61041,7 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       return _react.default.createElement("h1", {
-        class: "page-header"
+        className: "page-header"
       }, "Parasite prevention picker for dogs");
     }
   }]);
@@ -61030,18 +61068,10 @@ function (_React$Component2) {
       }, _react.default.createElement("div", {
         className: "app row"
       }, _react.default.createElement("div", {
-        className: "col-md-1"
-      }), _react.default.createElement("div", {
-        className: "col-md-10 text-center"
+        className: "col-md-10 offset-md-1 text-center"
       }, _react.default.createElement(Hello, null)), _react.default.createElement("div", {
-        className: "col-md-1"
-      }), _react.default.createElement("div", {
-        className: "col-md-1"
-      }), _react.default.createElement("div", {
-        className: "col-md-10 text-center"
-      }, _react.default.createElement(_requestPlace.InputAddress, null)), _react.default.createElement("div", {
-        className: "col-md-1"
-      })));
+        className: "col-md-10 offset-md-1 text-center"
+      }, _react.default.createElement(_requestPlace.InputAddress, null))));
     }
   }]);
 
@@ -61076,7 +61106,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55527" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51395" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

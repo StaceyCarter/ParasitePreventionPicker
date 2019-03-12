@@ -2,7 +2,7 @@ import React from "react";
 import { getData } from "./importData";
 import { Lyme, Anaplasmosis, Erlichiosis } from "./tickBorneDiseases.js";
 import { Hookworm, Whipworm, Giardia, Roundworm } from "./intestinalParasites";
-import { riskImageDetector } from './riskImageDecider';
+import { riskImageDetector } from "./riskImageDecider";
 
 export class FindParasites extends React.Component {
   constructor(props) {
@@ -17,68 +17,85 @@ export class FindParasites extends React.Component {
     console.log(info);
     return (
       <div>
-        <h2>Tick borne diseases:</h2>
-        <div class="row">
-          <div class="col-sm-4">
-            <h3>Lyme</h3>
-            <Lyme risk={info.Lyme[0]} percentage={info.Lyme[1]} />
+        <div className="disease-class">
+          <h2>Tick borne diseases:</h2>
+          <div className="row">
+            <div className="col-sm-4">
+              <h3 className="disease-heading">Lyme</h3>
+              <Lyme risk={info.Lyme[0]} percentage={info.Lyme[1]} />
+            </div>
+            <div className="col-sm-4">
+              <h3 className="disease-heading">Anaplasmosis</h3>
+              <Anaplasmosis
+                risk={info.Anaplasmosis[0]}
+                percentage={info.Anaplasmosis[1]}
+              />
+            </div>
+            <div className="col-sm-4">
+              <h3 className="disease-heading">Erlichiosis</h3>
+              <Erlichiosis
+                risk={info.Erlichiosis[0]}
+                percentage={info.Erlichiosis[1]}
+              />
+            </div>
           </div>
-          <div class="col-sm-4">
-            <h3>Anaplasmosis</h3>
-            <Anaplasmosis
-              risk={info.Anaplasmosis[0]}
-              percentage={info.Anaplasmosis[1]}
-            />
-          </div>
-          <div class="col-sm-4">
-            <h3>Erlichiosis</h3>
-            <Erlichiosis
-              risk={info.Erlichiosis[0]}
-              percentage={info.Erlichiosis[1]}
-            />
+          <div className="disease-explanation">
+            {this.findTickRisk(
+              info.Lyme[0],
+              info.Anaplasmosis[0],
+              info.Erlichiosis[0]
+            )}
           </div>
         </div>
-        {this.findTickRisk(
-          info.Lyme[0],
-          info.Anaplasmosis[0],
-          info.Erlichiosis[0]
-        )}
-
-        <h2>Intestinal parasites</h2>
-        <div class="row">
-        <div class="col-sm-4">
-        <h3>Roundworm</h3>
-        <Roundworm risk={info.Roundworm[0]} percentage={info.Roundworm[1]} />
+        <div>
+          <h2>Intestinal parasites</h2>
+          <div className="row">
+            <div className="col-sm-4">
+              <h3 className="disease-heading">Roundworm</h3>
+              <Roundworm
+                risk={info.Roundworm[0]}
+                percentage={info.Roundworm[1]}
+              />
+            </div>
+            <div className="col-sm-4">
+              <h3 className="disease-heading">Hookworm</h3>
+              <Hookworm risk={info.Hookworm[0]} percentage={info.Hookworm[1]} />
+            </div>
+            <div className="col-sm-4">
+              <h3 className="disease-heading">Whipworm</h3>
+              <Whipworm risk={info.Whipworm[0]} percentage={info.Whipworm[1]} />
+            </div>
+          </div>
+          <div className="disease-explanation">
+            {this.findWormRisk(
+              info.Roundworm[0],
+              info.Hookworm[0],
+              info.Whipworm[0],
+              info.Giardia[0]
+            )}
+          </div>
+          <h3 className="disease-heading">Giardia</h3>
+          <Giardia risk={info.Giardia[0]} percentage={info.Giardia[1]} />
+          <div className="disease-explanation">
+            {info.Giardia[0] === "high" ? (
+              <p>!!Risk of giardia is high in your area!!</p>
+            ) : (
+              ""
+            )}
+          </div>
         </div>
-        <div class="col-sm-4">
-        <h3>Hookworm</h3>
-        <Hookworm risk={info.Hookworm[0]} percentage={info.Hookworm[1]} />
+        <div>
+          <h2>Heartworm</h2>
+          <p>
+            Risk: {info.Heartworm[0]} {riskImageDetector(info.Heartworm[0])}
+          </p>
+          <p>
+            The percentage of animals who test positive is {info.Heartworm[1]}%
+          </p>
+          <div className="disease-explanation">
+            {this.findHeartWormRisk(info.Heartworm[0])}
+          </div>
         </div>
-        <div class="col-sm-4">
-        <h3>Whipworm</h3>
-        <Whipworm risk={info.Whipworm[0]} percentage={info.Whipworm[1]} />
-        </div>
-        </div>
-        {this.findWormRisk(
-          info.Roundworm[0],
-          info.Hookworm[0],
-          info.Whipworm[0],
-          info.Giardia[0]
-        )}
-        <h3>Giardia</h3>
-        <Giardia risk={info.Giardia[0]} percentage={info.Giardia[1]} />
-        {info.Giardia[0] === "high" ? (
-          <p>!!Risk of giardia is high in your area!!</p>
-        ) : (
-          ""
-        )}
-        
-        <h2>Heartworm</h2>
-        <p>Risk: {info.Heartworm[0]} {riskImageDetector(info.Heartworm[0])}</p>
-        <p>
-          The percentage of animals who test positive is {info.Heartworm[1]}%
-        </p>
-        {this.findHeartWormRisk(info.Heartworm[0])}
       </div>
     );
   }
@@ -169,11 +186,7 @@ export class FindParasites extends React.Component {
     if (this.props.state) {
       return this.findInfo();
     }
-    return (
-      <p>
-        
-      </p>
-    );
+    return <p />;
   }
 }
 
