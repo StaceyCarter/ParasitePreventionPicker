@@ -55950,7 +55950,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 var address;
 
 function getDetails(returnCounty, returnState, returnError) {
-  fetch("http://localhost:5000/location?address=".concat(address)).then(function (response) {
+  fetch("/location?address=".concat(address)).then(function (response) {
     return response.json();
   }).then(function (myJson) {
     var info = myJson;
@@ -65708,7 +65708,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51519" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58858" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
