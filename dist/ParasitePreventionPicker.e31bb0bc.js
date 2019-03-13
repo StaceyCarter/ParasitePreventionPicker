@@ -25691,16 +25691,7 @@ if ("development" === 'production') {
 } else {
   module.exports = require('./cjs/react-dom.development.js');
 }
-},{"./cjs/react-dom.development.js":"node_modules/react-dom/cjs/react-dom.development.js"}],"keys.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.GOOGLEAPI = void 0;
-var GOOGLEAPI = "AIzaSyDTG62_rP1u3pMFU--CM4sP8OkJTx9fXmc";
-exports.GOOGLEAPI = GOOGLEAPI;
-},{}],"findCounty.js":[function(require,module,exports) {
+},{"./cjs/react-dom.development.js":"node_modules/react-dom/cjs/react-dom.development.js"}],"findCounty.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -55926,8 +55917,6 @@ var _react = _interopRequireDefault(require("react"));
 
 var _reactDom = _interopRequireDefault(require("react-dom"));
 
-var _keys = require("./keys");
-
 var _findCounty = require("./findCounty");
 
 var _findCountry = require("./findCountry");
@@ -55961,7 +55950,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 var address;
 
 function getDetails(returnCounty, returnState, returnError) {
-  fetch("https://maps.googleapis.com/maps/api/geocode/json?address=".concat(address, "&key=").concat(_keys.GOOGLEAPI)).then(function (response) {
+  fetch("http://localhost:5000/location?address=".concat(address)).then(function (response) {
     return response.json();
   }).then(function (myJson) {
     var info = myJson;
@@ -56106,7 +56095,7 @@ function (_React$Component) {
 }(_react.default.Component);
 
 exports.InputAddress = InputAddress;
-},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./keys":"keys.js","./findCounty":"findCounty.js","./findCountry":"findCountry.js","./findState":"findState.js","./findParasites":"findParasites.js","@fortawesome/react-fontawesome":"node_modules/@fortawesome/react-fontawesome/index.es.js"}],"node_modules/@fortawesome/free-brands-svg-icons/index.es.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./findCounty":"findCounty.js","./findCountry":"findCountry.js","./findState":"findState.js","./findParasites":"findParasites.js","@fortawesome/react-fontawesome":"node_modules/@fortawesome/react-fontawesome/index.es.js"}],"node_modules/@fortawesome/free-brands-svg-icons/index.es.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -65719,7 +65708,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56314" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51519" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

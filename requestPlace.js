@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { GOOGLEAPI } from "./keys";
 import { findCounty } from "./findCounty";
 import { findCountry } from "./findCountry";
 import { findState } from "./findState";
@@ -11,7 +10,7 @@ let address;
 
 function getDetails(returnCounty, returnState, returnError) {
   fetch(
-    `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${GOOGLEAPI}`
+    `/location?address=${address}`
   )
     .then(function(response) {
       return response.json();
