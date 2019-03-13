@@ -55725,9 +55725,9 @@ function (_React$Component) {
       console.log(info);
       return _react.default.createElement("div", null, _react.default.createElement("div", {
         className: "disease-class"
-      }, _react.default.createElement("h2", null, "Tick borne diseases:"), _react.default.createElement(_reactSvg.default, {
+      }, _react.default.createElement(_reactSvg.default, {
         src: "./images/tick.svg"
-      }), _react.default.createElement("div", {
+      }), _react.default.createElement("h2", null, "Tick borne diseases:"), _react.default.createElement("div", {
         className: "row"
       }, _react.default.createElement("div", {
         className: "col-md-4"
@@ -55754,11 +55754,9 @@ function (_React$Component) {
         className: "disease-explanation"
       }, this.findTickRisk(info.Lyme[0], info.Anaplasmosis[0], info.Erlichiosis[0]))), _react.default.createElement("div", {
         className: "disease-class"
-      }, _react.default.createElement("h2", null, "Intestinal parasites"), _react.default.createElement(_reactSvg.default, {
-        src: "./images/flea.svg"
-      }), _react.default.createElement(_reactSvg.default, {
+      }, _react.default.createElement(_reactSvg.default, {
         src: "./images/worm.svg"
-      }), _react.default.createElement("div", {
+      }), _react.default.createElement("h2", null, "Intestinal parasites"), _react.default.createElement("div", {
         className: "row"
       }, _react.default.createElement("div", {
         className: "col-lg-4"
@@ -55792,15 +55790,23 @@ function (_React$Component) {
         percentage: info.Giardia[1]
       })), _react.default.createElement("div", {
         className: "giardia-explanation disease-explanation col-md-4"
-      }, info.Giardia[0] === "high" ? _react.default.createElement("p", null, "!!Risk of giardia is high in your area!!") : "")), _react.default.createElement("div", {
+      }, _react.default.createElement(_reactSvg.default, {
+        src: "./images/giardia.svg"
+      }), info.Giardia[0] === "high" ? _react.default.createElement("p", null, "!!Risk of giardia is high in your area!!") : "")), _react.default.createElement("div", {
         className: "disease-explanation"
       }, this.findWormRisk(info.Roundworm[0], info.Hookworm[0], info.Whipworm[0], info.Giardia[0]))), _react.default.createElement("div", {
         className: "disease-class"
-      }, _react.default.createElement("h2", null, "Heartworm"), _react.default.createElement(_reactSvg.default, {
+      }, _react.default.createElement(_reactSvg.default, {
         src: "./images/heartworm.svg"
-      }), _react.default.createElement("p", null, "Risk: ", info.Heartworm[0], " ", (0, _riskImageDecider.riskImageDetector)(info.Heartworm[0])), _react.default.createElement("p", null, "The percentage of animals who test positive is ", info.Heartworm[1], "%"), _react.default.createElement("div", {
+      }), _react.default.createElement("h2", null, "Heartworm"), _react.default.createElement("p", null, "Risk: ", info.Heartworm[0], " ", (0, _riskImageDecider.riskImageDetector)(info.Heartworm[0])), _react.default.createElement("p", null, "The percentage of animals who test positive is ", info.Heartworm[1], "%"), _react.default.createElement("div", {
         className: "disease-explanation"
-      }, this.findHeartWormRisk(info.Heartworm[0]))));
+      }, this.findHeartWormRisk(info.Heartworm[0]))), _react.default.createElement("div", {
+        className: "disease-class"
+      }, _react.default.createElement(_reactSvg.default, {
+        src: "./images/flea.svg"
+      }), _react.default.createElement("h2", null, "Fleas"), _react.default.createElement("div", {
+        className: "disease-explanation"
+      }, this.findFleaRisk(stateLocation))));
     }
   }, {
     key: "findTickRisk",
@@ -55852,6 +55858,25 @@ function (_React$Component) {
       } else {
         return _react.default.createElement("p", null, " ", "The risk of heartworm in you area is low, however you may still want to consider using a preventetive, and testing for heartworm each year. Especially if you travel.");
       }
+    }
+  }, {
+    key: "findFleaRisk",
+    value: function findFleaRisk(inputState) {
+      var fleasInWinter = ["Montana", "Wyoming", "Colorado", "Nebraska", "South Dakota", "North Dakota", "Minnesota", "Iowa", "Michigan", "New York", "Vermont", "New Hampshire", "Connecticut", "Rhode Island", "Massachusetts"];
+
+      if (inputState === "Alaska") {
+        return _react.default.createElement("p", null, "In your area, fleas are most active between May-October. They do not like the cold! While it is ideal to have your pets on year round flea prevention, it is most important to ensure they receive prevention during this time frame.");
+      }
+
+      for (var _i3 = 0; _i3 < fleasInWinter.length; _i3++) {
+        var state = fleasInWinter[_i3];
+
+        if (inputState === state) {
+          return _react.default.createElement("p", null, "In your area, fleas are mainly active during April-December. While year round flea treatment is still recommended due to flea's abilities to hibernate in carpet. It is most important to ensure your dog (and other pets) is on flea prevention during this time.");
+        }
+      }
+
+      return _react.default.createElement("p", null, "Fleas are active in your area ", _react.default.createElement("strong", null, "year round"), ". For this reason it is extremely important you ensure your dog and other pets receive flea treatment every month. Just one skipped treatment can result in an outbreak!");
     }
   }, {
     key: "render",
@@ -65694,7 +65719,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49741" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56314" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

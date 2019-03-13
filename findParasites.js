@@ -3,7 +3,7 @@ import { getData } from "./importData";
 import { Lyme, Anaplasmosis, Erlichiosis } from "./tickBorneDiseases.js";
 import { Hookworm, Whipworm, Giardia, Roundworm } from "./intestinalParasites";
 import { riskImageDetector } from "./riskImageDecider";
-import ReactSVG from 'react-svg';
+import ReactSVG from "react-svg";
 
 export class FindParasites extends React.Component {
   constructor(props) {
@@ -19,8 +19,8 @@ export class FindParasites extends React.Component {
     return (
       <div>
         <div className="disease-class">
-          <h2>Tick borne diseases:</h2>
           <ReactSVG src="./images/tick.svg" />
+          <h2>Tick borne diseases:</h2>
 
           <div className="row">
             <div className="col-md-4">
@@ -51,9 +51,9 @@ export class FindParasites extends React.Component {
           </div>
         </div>
         <div className="disease-class">
-          <h2>Intestinal parasites</h2>
-          <ReactSVG src="./images/flea.svg" />
           <ReactSVG src="./images/worm.svg" />
+          <h2>Intestinal parasites</h2>
+
           <div className="row">
             <div className="col-lg-4">
               <h3 className="disease-heading">Roundworm</h3>
@@ -72,17 +72,18 @@ export class FindParasites extends React.Component {
             </div>
           </div>
           <div className="row row-two">
-          <div className="col-md-4 offset-md-2">
-          <h3 className="disease-heading">Giardia</h3>
-          <Giardia risk={info.Giardia[0]} percentage={info.Giardia[1]} />
-          </div>
-          <div className="giardia-explanation disease-explanation col-md-4">
-            {info.Giardia[0] === "high" ? (
-              <p>!!Risk of giardia is high in your area!!</p>
-            ) : (
-              ""
-            )}
-          </div>
+            <div className="col-md-4 offset-md-2">
+              <h3 className="disease-heading">Giardia</h3>
+              <Giardia risk={info.Giardia[0]} percentage={info.Giardia[1]} />
+            </div>
+            <div className="giardia-explanation disease-explanation col-md-4">
+              <ReactSVG src="./images/giardia.svg" />
+              {info.Giardia[0] === "high" ? (
+                <p>!!Risk of giardia is high in your area!!</p>
+              ) : (
+                ""
+              )}
+            </div>
           </div>
           <div className="disease-explanation">
             {this.findWormRisk(
@@ -94,8 +95,9 @@ export class FindParasites extends React.Component {
           </div>
         </div>
         <div className="disease-class">
-          <h2>Heartworm</h2>
           <ReactSVG src="./images/heartworm.svg" />
+          <h2>Heartworm</h2>
+
           <p>
             Risk: {info.Heartworm[0]} {riskImageDetector(info.Heartworm[0])}
           </p>
@@ -104,6 +106,13 @@ export class FindParasites extends React.Component {
           </p>
           <div className="disease-explanation">
             {this.findHeartWormRisk(info.Heartworm[0])}
+          </div>
+        </div>
+        <div className="disease-class">
+          <ReactSVG src="./images/flea.svg" />
+          <h2>Fleas</h2>
+          <div className="disease-explanation">
+            {this.findFleaRisk(stateLocation)}
           </div>
         </div>
       </div>
@@ -190,6 +199,26 @@ export class FindParasites extends React.Component {
         </p>
       );
     }
+  }
+
+  findFleaRisk(inputState){
+    const fleasInWinter = ["Montana", "Wyoming", "Colorado", "Nebraska", "South Dakota", "North Dakota", "Minnesota", "Iowa", "Michigan", "New York", "Vermont", "New Hampshire", "Connecticut", "Rhode Island", "Massachusetts"];
+    if (inputState === "Alaska"){
+      return (
+        <p>In your area, fleas are most active between May-October. They do not like the cold! While it is ideal to have your pets on year round flea prevention, it is most important to ensure they receive prevention during this time frame.</p>
+      )
+    }
+    for (let state of fleasInWinter){
+      if (inputState === state){
+        return (
+          <p>In your area, fleas are mainly active during April-December. While year round flea treatment is still recommended due to flea's abilities to hibernate in carpet. It is most important to ensure your dog (and other pets) is on flea prevention during this time.</p>
+        );
+      }
+    }
+    return (
+      <p>Fleas are active in your area <strong>year round</strong>. For this reason it is extremely important you ensure your dog and other pets receive flea treatment every month. Just one skipped treatment can result in an outbreak!</p>
+    )
+
   }
 
   render() {
