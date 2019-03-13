@@ -72,17 +72,32 @@ export class FindParasites extends React.Component {
             </div>
           </div>
           <div className="row row-two">
-            <div className="col-md-4 offset-md-2">
+            <div className="col-md-8 offset-md-2">
+              <ReactSVG src="./images/giardia.svg" />
+
               <h3 className="disease-heading">Giardia</h3>
               <Giardia risk={info.Giardia[0]} percentage={info.Giardia[1]} />
-            </div>
-            <div className="giardia-explanation disease-explanation col-md-4">
-              <ReactSVG src="./images/giardia.svg" />
-              {info.Giardia[0] === "high" ? (
-                <p>!!Risk of giardia is high in your area!!</p>
-              ) : (
-                ""
-              )}
+
+              <div className="giardia-explanation disease-explanation">
+                {info.Giardia[0] === "high" || info.Giardia[0] === "medium" ? (
+                  <p>
+                    The risk of giardia is increased in your area. Giardia is a
+                    protozoa, rather than a worm. This means that products which
+                    contain a dewormer do not treat giardia. For this reason, it
+                    is very important that you ensure your dog has an annual
+                    fecal test each year. Giardia can be transmitted to humans,
+                    so this is a very important thing to do for everyone's
+                    health!
+                  </p>
+                ) : (
+                  <p>
+                    Giardia is a protozoa, meaning it doesn't respond to a
+                    normal dewormer. While your dog's risk of contracting
+                    giardia is low, if you notive any signs of diarrhoea, it is
+                    always a good idea to check a fecal sample, just to be sure!
+                  </p>
+                )}
+              </div>
             </div>
           </div>
           <div className="disease-explanation">
@@ -130,17 +145,34 @@ export class FindParasites extends React.Component {
     }
     if (obj.medium > 2 || obj.high >= 1) {
       return (
-        <p>
-          The prevalence of tick borne diseases in your area is reasonable. If
-          you go hiking a lot you should probably use it.
-        </p>
+        <div>
+          <p>
+            The prevalence of tick borne diseases in your area is significant.
+            If you take your dog hiking or if you go for walks/live in a woody
+            or grassy area you should consider using a tick prevention product
+            in addition to your normal flea prevention. There are many products
+            that do both.
+          </p>
+          <p>
+            Alternatively, if you only take your dog to at risk locations
+            sometimes, you could consider adding in a tick prevention (eg. a
+            tick collar) just at those times.
+          </p>
+          <p>
+            A blood test can be done to test for these tick borne diseases.
+            Since you live in an area at increased risk, talk to your
+            veterinarian about testing for these annually. This test is often
+            combined with an annual heartworm test.
+          </p>
+        </div>
       );
     } else {
       return (
         <p>
-          The risk of tick borne disease in your area is low. If you are an avid
-          hiker or go to lakes a lot you may want to consider protecting your
-          dog against ticks.{" "}
+          The risk of tick borne disease in your area is low. If you take your
+          dog hiking or for walks in woody, grassy areas, you may want to
+          consider adding in tick prevention product anyway. There are many
+          combination flea/tick prevention products available.
         </p>
       );
     }
@@ -159,12 +191,12 @@ export class FindParasites extends React.Component {
       return (
         <div>
           <p>
-            The prevalence of intestinal diseases in your area is high, be sure
+            The prevalence of intestinal diseases in your area is significant, be sure
             to have your dog's feces checked once a year to see if they need
-            deworming.
+            treatment.
           </p>
           <p>
-            It is also a good idea to go for a parasite prevention product that
+            It is also a good idea to choose a parasite prevention product that
             has a dewormer included.
           </p>
         </div>
@@ -173,8 +205,7 @@ export class FindParasites extends React.Component {
       return (
         <p>
           The risk of intestinal parasites in your area is low. You can be a
-          little more relaxed about annual fecal tests and ensuring there is a
-          dewormer in your parasite prevention
+          little more relaxed about deworming and annual fecal tests.
         </p>
       );
     }
@@ -186,39 +217,76 @@ export class FindParasites extends React.Component {
         <p>
           The risk of heartworm in your area is significant. Given the severity
           of this disease, it is extremely important that you maintain heartworm
-          treament monthly and test for heartworm each year.
+          treatment monthly and test for heartworm each year. Just one skipped
+          dose of heartworm medication can lead to infection. Heartworm is a
+          serious disease, it is very difficult to diagnose and the treatment is costly and traumatic, with no guarantee
+          of success. It is also very difficult to control, since it is
+          transmitted by mosquitoes, even indoor only pets are at risk.
         </p>
       );
     } else {
       return (
         <p>
-          {" "}
           The risk of heartworm in you area is low, however you may still want
-          to consider using a preventetive, and testing for heartworm each year.
-          Especially if you travel.
+          to consider using a preventative, and testing for heartworm each year.
+          Heartworm is a serious disease, it is very difficult to diagnose the
+          treatment is costly and traumatic, with no guarantee of success. It is
+          also very difficult to control, since it is transmitted by mosquitoes,
+          even indoor only pets are at risk.
         </p>
       );
     }
   }
 
-  findFleaRisk(inputState){
-    const fleasInWinter = ["Montana", "Wyoming", "Colorado", "Nebraska", "South Dakota", "North Dakota", "Minnesota", "Iowa", "Michigan", "New York", "Vermont", "New Hampshire", "Connecticut", "Rhode Island", "Massachusetts"];
-    if (inputState === "Alaska"){
+  findFleaRisk(inputState) {
+    const fleasInWinter = [
+      "Montana",
+      "Wyoming",
+      "Colorado",
+      "Nebraska",
+      "South Dakota",
+      "North Dakota",
+      "Minnesota",
+      "Iowa",
+      "Michigan",
+      "New York",
+      "Vermont",
+      "New Hampshire",
+      "Connecticut",
+      "Rhode Island",
+      "Massachusetts"
+    ];
+    if (inputState === "Alaska") {
       return (
-        <p>In your area, fleas are most active between May-October. They do not like the cold! While it is ideal to have your pets on year round flea prevention, it is most important to ensure they receive prevention during this time frame.</p>
-      )
+        <p>
+          In your area, fleas are most active between May-October, they do not
+          like the cold! While it is ideal to have your pets on year round flea
+          prevention, it is most important to ensure they receive prevention
+          during May-October.
+        </p>
+      );
     }
-    for (let state of fleasInWinter){
-      if (inputState === state){
+    for (let state of fleasInWinter) {
+      if (inputState === state) {
         return (
-          <p>In your area, fleas are mainly active during April-December. While year round flea treatment is still recommended due to flea's abilities to hibernate in carpet. It is most important to ensure your dog (and other pets) is on flea prevention during this time.</p>
+          <p>
+            In your area, fleas are mainly active during April-December. While
+            year round flea treatment is still recommended due to flea's
+            abilities to hibernate in carpet. It is most important to ensure
+            your dog (and other pets) is on consistent flea prevention during
+            April-December.
+          </p>
         );
       }
     }
     return (
-      <p>Fleas are active in your area <strong>year round</strong>. For this reason it is extremely important you ensure your dog and other pets receive flea treatment every month. Just one skipped treatment can result in an outbreak!</p>
-    )
-
+      <p>
+        Fleas are active in your area <strong>year round</strong>. For this
+        reason it is extremely important you ensure your dog and other pets
+        receive flea treatment every month. Just one skipped treatment can
+        result in an outbreak!
+      </p>
+    );
   }
 
   render() {
