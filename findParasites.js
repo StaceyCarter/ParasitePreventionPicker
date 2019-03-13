@@ -23,18 +23,18 @@ export class FindParasites extends React.Component {
           <h2>Tick borne diseases:</h2>
 
           <div className="row">
-            <div className="col-md-4">
+            <div className="col-lg-4">
               <h3 className="disease-heading">Lyme</h3>
               <Lyme risk={info.Lyme[0]} percentage={info.Lyme[1]} />
             </div>
-            <div className="col-md-4">
+            <div className="col-lg-4">
               <h3 className="disease-heading">Anaplasmosis</h3>
               <Anaplasmosis
                 risk={info.Anaplasmosis[0]}
                 percentage={info.Anaplasmosis[1]}
               />
             </div>
-            <div className="col-md-4">
+            <div className="col-lg-4">
               <h3 className="disease-heading">Erlichiosis</h3>
               <Erlichiosis
                 risk={info.Erlichiosis[0]}

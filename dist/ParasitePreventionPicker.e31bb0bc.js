@@ -55721,21 +55721,21 @@ function (_React$Component) {
       }), _react.default.createElement("h2", null, "Tick borne diseases:"), _react.default.createElement("div", {
         className: "row"
       }, _react.default.createElement("div", {
-        className: "col-md-4"
+        className: "col-lg-4"
       }, _react.default.createElement("h3", {
         className: "disease-heading"
       }, "Lyme"), _react.default.createElement(_tickBorneDiseases.Lyme, {
         risk: info.Lyme[0],
         percentage: info.Lyme[1]
       })), _react.default.createElement("div", {
-        className: "col-md-4"
+        className: "col-lg-4"
       }, _react.default.createElement("h3", {
         className: "disease-heading"
       }, "Anaplasmosis"), _react.default.createElement(_tickBorneDiseases.Anaplasmosis, {
         risk: info.Anaplasmosis[0],
         percentage: info.Anaplasmosis[1]
       })), _react.default.createElement("div", {
-        className: "col-md-4"
+        className: "col-lg-4"
       }, _react.default.createElement("h3", {
         className: "disease-heading"
       }, "Erlichiosis"), _react.default.createElement(_tickBorneDiseases.Erlichiosis, {
