@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 let address;
 
+// fetch is sent to website server which appends the address and google API key to request information about input from google geolocation API.
 const getDetails = function(returnCounty, returnState, returnError) {
   fetch(
      `/location?address=${address}`
