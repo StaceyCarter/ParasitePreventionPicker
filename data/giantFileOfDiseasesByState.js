@@ -1,3 +1,5 @@
+// Contains data for all diseases, for each state. Individual county data not included.
+
 export const giantArrayOfDiseases = [
   [
     "Lyme",

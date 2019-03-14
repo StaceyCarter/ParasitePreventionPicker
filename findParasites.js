@@ -1,19 +1,22 @@
 import React from "react";
 import { getData } from "./importData";
-import { Lyme, Anaplasmosis, Erlichiosis } from "./tickBorneDiseases.js";
-import { Hookworm, Whipworm, Giardia, Roundworm } from "./intestinalParasites";
-import { riskImageDetector } from "./riskImageDecider";
 import ReactSVG from "react-svg";
+import { RenderRiskData } from "./renderRiskData";
 
 export class FindParasites extends React.Component {
   constructor(props) {
     super(props);
     this.findInfo = this.findInfo.bind(this);
     this.findTickRisk = this.findTickRisk.bind(this);
+    this.findWormRisk = this.findWormRisk.bind(this);
+    this.findHeartWormRisk = this.findHeartWormRisk.bind(this);
+    this.findFleaRisk = this.findFleaRisk.bind(this);
   }
 
   findInfo() {
+    // Renders information about each parasitic disease.
     let stateLocation = this.props.state;
+
     let info = getData(stateLocation);
     console.log(info);
     return (
@@ -25,18 +28,18 @@ export class FindParasites extends React.Component {
           <div className="row">
             <div className="col-lg-4">
               <h3 className="disease-heading">Lyme</h3>
-              <Lyme risk={info.Lyme[0]} percentage={info.Lyme[1]} />
+              <RenderRiskData risk={info.Lyme[0]} percentage={info.Lyme[1]} />
             </div>
             <div className="col-lg-4">
               <h3 className="disease-heading">Anaplasmosis</h3>
-              <Anaplasmosis
+              <RenderRiskData
                 risk={info.Anaplasmosis[0]}
                 percentage={info.Anaplasmosis[1]}
               />
             </div>
             <div className="col-lg-4">
               <h3 className="disease-heading">Erlichiosis</h3>
-              <Erlichiosis
+              <RenderRiskData
                 risk={info.Erlichiosis[0]}
                 percentage={info.Erlichiosis[1]}
               />
@@ -53,22 +56,27 @@ export class FindParasites extends React.Component {
         <div className="disease-class">
           <ReactSVG src="./images/worm.svg" />
           <h2>Intestinal parasites</h2>
-
           <div className="row">
             <div className="col-lg-4">
               <h3 className="disease-heading">Roundworm</h3>
-              <Roundworm
+              <RenderRiskData
                 risk={info.Roundworm[0]}
                 percentage={info.Roundworm[1]}
               />
             </div>
             <div className="col-lg-4">
               <h3 className="disease-heading">Hookworm</h3>
-              <Hookworm risk={info.Hookworm[0]} percentage={info.Hookworm[1]} />
+              <RenderRiskData
+                risk={info.Hookworm[0]}
+                percentage={info.Hookworm[1]}
+              />
             </div>
             <div className="col-lg-4">
               <h3 className="disease-heading">Whipworm</h3>
-              <Whipworm risk={info.Whipworm[0]} percentage={info.Whipworm[1]} />
+              <RenderRiskData
+                risk={info.Whipworm[0]}
+                percentage={info.Whipworm[1]}
+              />
             </div>
           </div>
           <div className="row row-two">
@@ -76,7 +84,10 @@ export class FindParasites extends React.Component {
               <ReactSVG src="./images/giardia.svg" />
 
               <h3 className="disease-heading">Giardia</h3>
-              <Giardia risk={info.Giardia[0]} percentage={info.Giardia[1]} />
+              <RenderRiskData
+                risk={info.Giardia[0]}
+                percentage={info.Giardia[1]}
+              />
 
               <div className="giardia-explanation disease-explanation">
                 {info.Giardia[0] === "high" || info.Giardia[0] === "medium" ? (
@@ -112,13 +123,10 @@ export class FindParasites extends React.Component {
         <div className="disease-class">
           <ReactSVG src="./images/heartworm.svg" />
           <h2>Heartworm</h2>
-
-          <p>
-            Risk: {info.Heartworm[0]} {riskImageDetector(info.Heartworm[0])}
-          </p>
-          <p>
-            The percentage of animals who test positive is {info.Heartworm[1]}%
-          </p>
+          <RenderRiskData
+            risk={info.Heartworm[0]}
+            percentage={info.Heartworm[1]}
+          />
           <div className="disease-explanation">
             {this.findHeartWormRisk(info.Heartworm[0])}
           </div>
@@ -133,6 +141,7 @@ export class FindParasites extends React.Component {
       </div>
     );
   }
+  // Finds prevalence of tick borne diseases in the area and returns advice accordingly.
   findTickRisk(risk1, risk2, risk3) {
     let array = [risk1, risk2, risk3];
     let obj = {
@@ -177,6 +186,7 @@ export class FindParasites extends React.Component {
       );
     }
   }
+  // Finds prevalence intestinal (worms and giardia) diseases in the area and returns advice accordingly.
   findWormRisk(risk1, risk2, risk3, risk4) {
     let array = [risk1, risk2, risk3, risk4];
     let obj = {
@@ -191,9 +201,9 @@ export class FindParasites extends React.Component {
       return (
         <div>
           <p>
-            The prevalence of intestinal diseases in your area is significant, be sure
-            to have your dog's feces checked once a year to see if they need
-            treatment.
+            The prevalence of intestinal diseases in your area is significant,
+            be sure to have your dog's feces checked once a year to see if they
+            need treatment.
           </p>
           <p>
             It is also a good idea to choose a parasite prevention product that
@@ -210,34 +220,46 @@ export class FindParasites extends React.Component {
       );
     }
   }
-
+  // Finds prevalence heartworm in the area and returns advice accordingly.
   findHeartWormRisk(r) {
     if (r === "high" || r === "medium") {
       return (
-        <p>
-          The risk of heartworm in your area is significant. Given the severity
-          of this disease, it is extremely important that you maintain heartworm
-          treatment monthly and test for heartworm each year. Just one skipped
-          dose of heartworm medication can lead to infection. Heartworm is a
-          serious disease, it is very difficult to diagnose and the treatment is costly and traumatic, with no guarantee
-          of success. It is also very difficult to control, since it is
-          transmitted by mosquitoes, even indoor only pets are at risk.
-        </p>
+        <div>
+          <p>
+            The risk of heartworm in your area is significant. Given the
+            severity of this disease, it is extremely important that you
+            maintain heartworm treatment monthly and test for heartworm each
+            year. Just one skipped dose of heartworm medication can lead to
+            infection.
+          </p>
+          <p>
+            Heartworm is a serious disease, it is very difficult to diagnose and
+            the treatment is costly and traumatic, with no guarantee of success.
+            It is also very difficult to control, since it is transmitted by
+            mosquitoes, even indoor only pets are at risk.
+          </p>
+        </div>
       );
     } else {
       return (
-        <p>
-          The risk of heartworm in you area is low, however you may still want
-          to consider using a preventative, and testing for heartworm each year.
-          Heartworm is a serious disease, it is very difficult to diagnose the
-          treatment is costly and traumatic, with no guarantee of success. It is
-          also very difficult to control, since it is transmitted by mosquitoes,
-          even indoor only pets are at risk.
-        </p>
+        <div>
+          <p>
+            The risk of heartworm in you area is low, however you may still want
+            to consider using a preventative, and testing for heartworm each
+            year. Especially if you travel to areas with a higher prevalence.
+          </p>
+          <p>
+            Heartworm is a serious disease, it is very difficult to diagnose the
+            treatment is costly and traumatic, with no guarantee of success. It
+            is also very difficult to control, since it is transmitted by
+            mosquitoes, even indoor only pets are at risk.
+          </p>
+        </div>
       );
     }
   }
 
+  // Finds seasonal risk of fleas based on state. Colder states mean fleas are mostly active in summer.
   findFleaRisk(inputState) {
     const fleasInWinter = [
       "Montana",
@@ -290,18 +312,10 @@ export class FindParasites extends React.Component {
   }
 
   render() {
+    // If a state has been received then execute the findInfo method. Otherwise return empty.
     if (this.props.state) {
       return this.findInfo();
     }
     return <p />;
-  }
-}
-
-class Heartworm extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return <p>hello heartworm</p>;
   }
 }
