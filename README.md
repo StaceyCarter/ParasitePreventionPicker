@@ -4,7 +4,7 @@ A website to help owners decide what parasite prevention products they will pick
 
 To see the website live, visit: https://protected-fjord-51277.herokuapp.com/
 
-1. An place is submitted to the input box on the site. 
+1. A place is submitted to the input box on the site. 
 2. This place is then sent to the website's server which appends the google API key and sends a request to google geolocation services to provide complete information about the place given. 
 3. Once the complete information of the address is received by the website, the county and state is extracted. 
 4. This information is used to search the data (giantFileOfDiseases) to determine the prevalence of each disease in the given state. Data has not yet been collected for counties. 
