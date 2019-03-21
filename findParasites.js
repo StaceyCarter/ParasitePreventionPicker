@@ -27,43 +27,46 @@ export class FindParasites extends React.Component {
           <div className="row">
             <div className="col-lg-4">
               <h3 className="disease-heading">Lyme</h3>
-              {info.Lyme ? 
-              <RenderRiskData risk={info.Lyme[0]} percentage={info.Lyme[1]} /> :
-              console.log("No data")} 
-              
-        
+              {info.Lyme ? (
+                <RenderRiskData risk={info.Lyme[0]} percentage={info.Lyme[1]} />
+              ) : (
+                "No data"
+              )}
             </div>
             <div className="col-lg-4">
               <h3 className="disease-heading">Anaplasmosis</h3>
-              {info.Anaplasmosis ? <RenderRiskData
-                risk={info.Anaplasmosis[0]}
-                percentage={info.Anaplasmosis[1]}
-              /> : 
-              "No data"}
-              
+              {info.Anaplasmosis ? (
+                <RenderRiskData
+                  risk={info.Anaplasmosis[0]}
+                  percentage={info.Anaplasmosis[1]}
+                />
+              ) : (
+                "No data"
+              )}
             </div>
             <div className="col-lg-4">
               <h3 className="disease-heading">Erlichiosis</h3>
-              {info.Erlichiosis ? 
-              <RenderRiskData
-              risk={info.Erlichiosis[0]}
-              percentage={info.Erlichiosis[1]}
-            /> :
-            "No data"}
-              
+              {info.Erlichiosis ? (
+                <RenderRiskData
+                  risk={info.Erlichiosis[0]}
+                  percentage={info.Erlichiosis[1]}
+                />
+              ) : (
+                "No data"
+              )}
             </div>
           </div>
-          { info.Lyme && info.Anaplasmosis && info.Erlichiosis ? 
-          <div className="disease-explanation">
-          {this.findTickRisk(
-            info.Lyme[0],
-            info.Anaplasmosis[0],
-            info.Erlichiosis[0]
+          {info.Lyme && info.Anaplasmosis && info.Erlichiosis ? (
+            <div className="disease-explanation">
+              {this.findTickRisk(
+                info.Lyme[0],
+                info.Anaplasmosis[0],
+                info.Erlichiosis[0]
+              )}
+            </div>
+          ) : (
+            ""
           )}
-        </div> :
-        "No data"  
-        }
-        
         </div>
         <div className="disease-class">
           <ReactSVG src="./images/worm.svg" />
@@ -71,104 +74,109 @@ export class FindParasites extends React.Component {
           <div className="row">
             <div className="col-lg-4">
               <h3 className="disease-heading">Roundworm</h3>
-              {info.Roundworm ? 
-              <RenderRiskData
-              risk={info.Roundworm[0]}
-              percentage={info.Roundworm[1]}
-            /> :
-            "No data"}
-              
+              {info.Roundworm ? (
+                <RenderRiskData
+                  risk={info.Roundworm[0]}
+                  percentage={info.Roundworm[1]}
+                />
+              ) : (
+                "No data"
+              )}
             </div>
             <div className="col-lg-4">
               <h3 className="disease-heading">Hookworm</h3>
-              {info.Hookworm ? 
-              <RenderRiskData
-              risk={info.Hookworm[0]}
-              percentage={info.Hookworm[1]}
-            /> :
-            "No data"}
-              
+              {info.Hookworm ? (
+                <RenderRiskData
+                  risk={info.Hookworm[0]}
+                  percentage={info.Hookworm[1]}
+                />
+              ) : (
+                "No data"
+              )}
             </div>
             <div className="col-lg-4">
               <h3 className="disease-heading">Whipworm</h3>
-              {info.Whipworm ? 
-              <RenderRiskData
-              risk={info.Whipworm[0]}
-              percentage={info.Whipworm[1]}
-            /> :
-            "No data"}
-              
+              {info.Whipworm ? (
+                <RenderRiskData
+                  risk={info.Whipworm[0]}
+                  percentage={info.Whipworm[1]}
+                />
+              ) : (
+                "No data"
+              )}
             </div>
           </div>
           <div className="row row-two">
             <div className="col-md-8 offset-md-2">
-              
               <ReactSVG src="./images/giardia.svg" />
 
-
               <h3 className="disease-heading">Giardia</h3>
-              {info.Giardia ?
-              <RenderRiskData
-              risk={info.Giardia[0]}
-              percentage={info.Giardia[1]}
-            /> :
-          "No data"}
+              {info.Giardia ? (
+                <RenderRiskData
+                  risk={info.Giardia[0]}
+                  percentage={info.Giardia[1]}
+                />
+              ) : (
+                "No data"
+              )}
 
-              
-              {info.Giardia ?
-               <div className="giardia-explanation disease-explanation">
-               {info.Giardia[0] === "high" || info.Giardia[0] === "medium" ? (
-                 <p>
-                   The risk of giardia is increased in your area. Giardia is a
-                   protozoa, rather than a worm. This means that products which
-                   contain a dewormer do not treat giardia. For this reason, it
-                   is very important that you ensure your dog has an annual
-                   fecal test each year. Giardia can be transmitted to humans,
-                   so this is a very important thing to do for everyone's
-                   health!
-                 </p>
-               ) : (
-                 <p>
-                   Giardia is a protozoa, meaning it doesn't respond to a
-                   normal dewormer. While your dog's risk of contracting
-                   giardia is low, if you notive any signs of diarrhoea, it is
-                   always a good idea to check a fecal sample, just to be sure!
-                 </p>
-               )}
-             </div> :
-             
-              ""}
-             
+              {info.Giardia ? (
+                <div className="giardia-explanation disease-explanation">
+                  {info.Giardia[0] === "high" ||
+                  info.Giardia[0] === "medium" ? (
+                    <p>
+                      The risk of giardia is increased in your area. Giardia is
+                      a protozoa, rather than a worm. This means that products
+                      which contain a dewormer do not treat giardia. For this
+                      reason, it is very important that you ensure your dog has
+                      an annual fecal test each year. Giardia can be transmitted
+                      to humans, so this is a very important thing to do for
+                      everyone's health!
+                    </p>
+                  ) : (
+                    <p>
+                      Giardia is a protozoa, meaning it doesn't respond to a
+                      normal dewormer. While your dog's risk of contracting
+                      giardia is low, if you notive any signs of diarrhoea, it
+                      is always a good idea to check a fecal sample, just to be
+                      sure!
+                    </p>
+                  )}
+                </div>
+              ) : (
+                ""
+              )}
             </div>
           </div>
-          {info.Hookworm && info.Roundworm && info.Whipworm && info.Giardia ?
-          <div className="disease-explanation">
-          {this.findWormRisk(
-            info.Roundworm[0],
-            info.Hookworm[0],
-            info.Whipworm[0],
-            info.Giardia[0]
+          {info.Hookworm && info.Roundworm && info.Whipworm && info.Giardia ? (
+            <div className="disease-explanation">
+              {this.findWormRisk(
+                info.Roundworm[0],
+                info.Hookworm[0],
+                info.Whipworm[0],
+                info.Giardia[0]
+              )}
+            </div>
+          ) : (
+            ""
           )}
-        </div> :
-        "No data"
-          }
-          
         </div>
         <div className="disease-class">
           <ReactSVG src="./images/heartworm.svg" />
           <h2>Heartworm</h2>
-          {info.Heartworm ?
-          <div>
-          <RenderRiskData
-          risk={info.Heartworm[0]}
-          percentage={info.Heartworm[1]}
-        />
-        <div className="disease-explanation">
-          {this.findHeartWormRisk(info.Heartworm[0])}
-        </div> </div>:
-        "No data"
-          }
-          
+          {info.Heartworm ? (
+            <div>
+              <RenderRiskData
+                risk={info.Heartworm[0]}
+                percentage={info.Heartworm[1]}
+              />
+              <div className="disease-explanation">
+                {this.findHeartWormRisk(info.Heartworm[0])}
+              </div>{" "}
+            </div>
+          ) : (
+            "No data"
+          )}
         </div>
         <div className="disease-class">
           <ReactSVG src="./images/flea.svg" />

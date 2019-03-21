@@ -55495,7 +55495,7 @@ function (_React$Component) {
       }, "Lyme"), info.Lyme ? _react.default.createElement(_renderRiskData.RenderRiskData, {
         risk: info.Lyme[0],
         percentage: info.Lyme[1]
-      }) : console.log("No data")), _react.default.createElement("div", {
+      }) : "No data"), _react.default.createElement("div", {
         className: "col-lg-4"
       }, _react.default.createElement("h3", {
         className: "disease-heading"
@@ -55511,7 +55511,7 @@ function (_React$Component) {
         percentage: info.Erlichiosis[1]
       }) : "No data")), info.Lyme && info.Anaplasmosis && info.Erlichiosis ? _react.default.createElement("div", {
         className: "disease-explanation"
-      }, this.findTickRisk(info.Lyme[0], info.Anaplasmosis[0], info.Erlichiosis[0])) : "No data"), _react.default.createElement("div", {
+      }, this.findTickRisk(info.Lyme[0], info.Anaplasmosis[0], info.Erlichiosis[0])) : ""), _react.default.createElement("div", {
         className: "disease-class"
       }, _react.default.createElement(_reactSvg.default, {
         src: "./images/worm.svg"
@@ -55553,7 +55553,7 @@ function (_React$Component) {
         className: "giardia-explanation disease-explanation"
       }, info.Giardia[0] === "high" || info.Giardia[0] === "medium" ? _react.default.createElement("p", null, "The risk of giardia is increased in your area. Giardia is a protozoa, rather than a worm. This means that products which contain a dewormer do not treat giardia. For this reason, it is very important that you ensure your dog has an annual fecal test each year. Giardia can be transmitted to humans, so this is a very important thing to do for everyone's health!") : _react.default.createElement("p", null, "Giardia is a protozoa, meaning it doesn't respond to a normal dewormer. While your dog's risk of contracting giardia is low, if you notive any signs of diarrhoea, it is always a good idea to check a fecal sample, just to be sure!")) : "")), info.Hookworm && info.Roundworm && info.Whipworm && info.Giardia ? _react.default.createElement("div", {
         className: "disease-explanation"
-      }, this.findWormRisk(info.Roundworm[0], info.Hookworm[0], info.Whipworm[0], info.Giardia[0])) : "No data"), _react.default.createElement("div", {
+      }, this.findWormRisk(info.Roundworm[0], info.Hookworm[0], info.Whipworm[0], info.Giardia[0])) : ""), _react.default.createElement("div", {
         className: "disease-class"
       }, _react.default.createElement(_reactSvg.default, {
         src: "./images/heartworm.svg"
