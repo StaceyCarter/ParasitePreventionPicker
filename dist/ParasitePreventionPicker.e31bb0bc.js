@@ -55482,7 +55482,6 @@ function (_React$Component) {
       // Renders information about each parasitic disease.
       var stateLocation = this.props.state;
       var info = (0, _importData.getData)(stateLocation);
-      console.log(info);
       return _react.default.createElement("div", null, _react.default.createElement("div", {
         className: "disease-class"
       }, _react.default.createElement(_reactSvg.default, {
@@ -55493,26 +55492,26 @@ function (_React$Component) {
         className: "col-lg-4"
       }, _react.default.createElement("h3", {
         className: "disease-heading"
-      }, "Lyme"), _react.default.createElement(_renderRiskData.RenderRiskData, {
+      }, "Lyme"), info.Lyme ? _react.default.createElement(_renderRiskData.RenderRiskData, {
         risk: info.Lyme[0],
         percentage: info.Lyme[1]
-      })), _react.default.createElement("div", {
+      }) : console.log("No data")), _react.default.createElement("div", {
         className: "col-lg-4"
       }, _react.default.createElement("h3", {
         className: "disease-heading"
-      }, "Anaplasmosis"), _react.default.createElement(_renderRiskData.RenderRiskData, {
+      }, "Anaplasmosis"), info.Anaplasmosis ? _react.default.createElement(_renderRiskData.RenderRiskData, {
         risk: info.Anaplasmosis[0],
         percentage: info.Anaplasmosis[1]
-      })), _react.default.createElement("div", {
+      }) : "No data"), _react.default.createElement("div", {
         className: "col-lg-4"
       }, _react.default.createElement("h3", {
         className: "disease-heading"
-      }, "Erlichiosis"), _react.default.createElement(_renderRiskData.RenderRiskData, {
+      }, "Erlichiosis"), info.Erlichiosis ? _react.default.createElement(_renderRiskData.RenderRiskData, {
         risk: info.Erlichiosis[0],
         percentage: info.Erlichiosis[1]
-      }))), _react.default.createElement("div", {
+      }) : "No data")), info.Lyme && info.Anaplasmosis && info.Erlichiosis ? _react.default.createElement("div", {
         className: "disease-explanation"
-      }, this.findTickRisk(info.Lyme[0], info.Anaplasmosis[0], info.Erlichiosis[0]))), _react.default.createElement("div", {
+      }, this.findTickRisk(info.Lyme[0], info.Anaplasmosis[0], info.Erlichiosis[0])) : "No data"), _react.default.createElement("div", {
         className: "disease-class"
       }, _react.default.createElement(_reactSvg.default, {
         src: "./images/worm.svg"
@@ -55522,24 +55521,24 @@ function (_React$Component) {
         className: "col-lg-4"
       }, _react.default.createElement("h3", {
         className: "disease-heading"
-      }, "Roundworm"), _react.default.createElement(_renderRiskData.RenderRiskData, {
+      }, "Roundworm"), info.Roundworm ? _react.default.createElement(_renderRiskData.RenderRiskData, {
         risk: info.Roundworm[0],
         percentage: info.Roundworm[1]
-      })), _react.default.createElement("div", {
+      }) : "No data"), _react.default.createElement("div", {
         className: "col-lg-4"
       }, _react.default.createElement("h3", {
         className: "disease-heading"
-      }, "Hookworm"), _react.default.createElement(_renderRiskData.RenderRiskData, {
+      }, "Hookworm"), info.Hookworm ? _react.default.createElement(_renderRiskData.RenderRiskData, {
         risk: info.Hookworm[0],
         percentage: info.Hookworm[1]
-      })), _react.default.createElement("div", {
+      }) : "No data"), _react.default.createElement("div", {
         className: "col-lg-4"
       }, _react.default.createElement("h3", {
         className: "disease-heading"
-      }, "Whipworm"), _react.default.createElement(_renderRiskData.RenderRiskData, {
+      }, "Whipworm"), info.Whipworm ? _react.default.createElement(_renderRiskData.RenderRiskData, {
         risk: info.Whipworm[0],
         percentage: info.Whipworm[1]
-      }))), _react.default.createElement("div", {
+      }) : "No data")), _react.default.createElement("div", {
         className: "row row-two"
       }, _react.default.createElement("div", {
         className: "col-md-8 offset-md-2"
@@ -55547,23 +55546,23 @@ function (_React$Component) {
         src: "./images/giardia.svg"
       }), _react.default.createElement("h3", {
         className: "disease-heading"
-      }, "Giardia"), _react.default.createElement(_renderRiskData.RenderRiskData, {
+      }, "Giardia"), info.Giardia ? _react.default.createElement(_renderRiskData.RenderRiskData, {
         risk: info.Giardia[0],
         percentage: info.Giardia[1]
-      }), _react.default.createElement("div", {
+      }) : "No data", info.Giardia ? _react.default.createElement("div", {
         className: "giardia-explanation disease-explanation"
-      }, info.Giardia[0] === "high" || info.Giardia[0] === "medium" ? _react.default.createElement("p", null, "The risk of giardia is increased in your area. Giardia is a protozoa, rather than a worm. This means that products which contain a dewormer do not treat giardia. For this reason, it is very important that you ensure your dog has an annual fecal test each year. Giardia can be transmitted to humans, so this is a very important thing to do for everyone's health!") : _react.default.createElement("p", null, "Giardia is a protozoa, meaning it doesn't respond to a normal dewormer. While your dog's risk of contracting giardia is low, if you notive any signs of diarrhoea, it is always a good idea to check a fecal sample, just to be sure!")))), _react.default.createElement("div", {
+      }, info.Giardia[0] === "high" || info.Giardia[0] === "medium" ? _react.default.createElement("p", null, "The risk of giardia is increased in your area. Giardia is a protozoa, rather than a worm. This means that products which contain a dewormer do not treat giardia. For this reason, it is very important that you ensure your dog has an annual fecal test each year. Giardia can be transmitted to humans, so this is a very important thing to do for everyone's health!") : _react.default.createElement("p", null, "Giardia is a protozoa, meaning it doesn't respond to a normal dewormer. While your dog's risk of contracting giardia is low, if you notive any signs of diarrhoea, it is always a good idea to check a fecal sample, just to be sure!")) : "")), info.Hookworm && info.Roundworm && info.Whipworm && info.Giardia ? _react.default.createElement("div", {
         className: "disease-explanation"
-      }, this.findWormRisk(info.Roundworm[0], info.Hookworm[0], info.Whipworm[0], info.Giardia[0]))), _react.default.createElement("div", {
+      }, this.findWormRisk(info.Roundworm[0], info.Hookworm[0], info.Whipworm[0], info.Giardia[0])) : "No data"), _react.default.createElement("div", {
         className: "disease-class"
       }, _react.default.createElement(_reactSvg.default, {
         src: "./images/heartworm.svg"
-      }), _react.default.createElement("h2", null, "Heartworm"), _react.default.createElement(_renderRiskData.RenderRiskData, {
+      }), _react.default.createElement("h2", null, "Heartworm"), info.Heartworm ? _react.default.createElement("div", null, _react.default.createElement(_renderRiskData.RenderRiskData, {
         risk: info.Heartworm[0],
         percentage: info.Heartworm[1]
       }), _react.default.createElement("div", {
         className: "disease-explanation"
-      }, this.findHeartWormRisk(info.Heartworm[0]))), _react.default.createElement("div", {
+      }, this.findHeartWormRisk(info.Heartworm[0])), " ") : "No data"), _react.default.createElement("div", {
         className: "disease-class"
       }, _react.default.createElement(_reactSvg.default, {
         src: "./images/flea.svg"
@@ -55703,10 +55702,11 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-var address;
+var address; // fetch is sent to website server which appends the address and google API key to request information about input from google geolocation API.
 
 var getDetails = function getDetails(returnCounty, returnState, returnError) {
-  fetch("/location?address=".concat(address)).then(function (response) {
+  fetch( //  `/location?address=${address}`
+  "https://maps.googleapis.com/maps/api/geocode/json?address=".concat(address, "&key=AIzaSyDTG62_rP1u3pMFU--CM4sP8OkJTx9fXmc")).then(function (response) {
     return response.json();
   }) // Check if country is the USA. If it is, returns the county and the state in an array.
   .then(function (myJson) {

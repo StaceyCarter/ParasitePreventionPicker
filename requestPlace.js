@@ -11,7 +11,8 @@ let address;
 // fetch is sent to website server which appends the address and google API key to request information about input from google geolocation API.
 const getDetails = function(returnCounty, returnState, returnError) {
   fetch(
-     `/location?address=${address}`
+    //  `/location?address=${address}`
+    `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=AIzaSyDTG62_rP1u3pMFU--CM4sP8OkJTx9fXmc`
   )
     .then(function(response) {
       return response.json();

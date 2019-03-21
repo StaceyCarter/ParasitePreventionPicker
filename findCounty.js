@@ -8,5 +8,5 @@ export const findCounty = function(info) {
     let labels = obj.types;
     return labels.includes("administrative_area_level_2");
   });
-  return counties[0].long_name;
+    return counties[0].long_name;
 };
