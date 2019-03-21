@@ -55705,8 +55705,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 var address; // fetch is sent to website server which appends the address and google API key to request information about input from google geolocation API.
 
 var getDetails = function getDetails(returnCounty, returnState, returnError) {
-  fetch( //  `/location?address=${address}`
-  "https://maps.googleapis.com/maps/api/geocode/json?address=".concat(address, "&key=AIzaSyDTG62_rP1u3pMFU--CM4sP8OkJTx9fXmc")).then(function (response) {
+  fetch("/location?address=".concat(address)).then(function (response) {
     return response.json();
   }) // Check if country is the USA. If it is, returns the county and the state in an array.
   .then(function (myJson) {
